@@ -35,6 +35,7 @@ body {
     font-family: "Manrope", sans-serif;
     color: var(--text);
     background: var(--bg);
+    overflow-x: hidden;
 }
 
 img {
@@ -1596,6 +1597,10 @@ textarea {
         min-height: 500px;
     }
 
+    .hero-copy h1 {
+        font-size: clamp(3.3rem, 10vw, 4.8rem);
+    }
+
     .hero-card-review {
         left: 0;
     }
@@ -1611,7 +1616,33 @@ textarea {
 
 @media (max-width: 680px) {
     .section {
-        padding: 78px 0;
+        padding: 64px 0;
+    }
+
+    .container {
+        width: min(var(--container), calc(100% - 1.35rem));
+    }
+
+    .hero {
+        padding: 16px 0 42px;
+    }
+
+    .hero-grid {
+        gap: 2.2rem;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(2.9rem, 14vw, 4.1rem);
+        line-height: 0.98;
+    }
+
+    .hero-name {
+        font-size: 0.88rem;
+    }
+
+    .hero-text {
+        font-size: 0.92rem;
+        line-height: 1.75;
     }
 
     .service-grid,
@@ -1620,7 +1651,13 @@ textarea {
     }
 
     .hero-visual {
-        min-height: 440px;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.9rem;
+        padding-top: 0.4rem;
     }
 
     .hero-pattern {
@@ -1629,8 +1666,33 @@ textarea {
         background-size: 14px 14px;
     }
 
+    .hero-pattern-left {
+        left: -18px;
+        top: 32%;
+        opacity: 0.12;
+    }
+
+    .hero-pattern-right {
+        right: -8px;
+        top: 2%;
+        opacity: 0.5;
+    }
+
+    .orbit-large {
+        width: 92%;
+        top: 12%;
+        right: 4%;
+    }
+
+    .orbit-small {
+        width: 72%;
+        top: 22%;
+        right: 14%;
+    }
+
     .hero-card {
         position: relative;
+        max-width: 100%;
     }
 
     .hero-card-review,
@@ -1642,27 +1704,164 @@ textarea {
         left: auto;
     }
 
-    .hero-visual {
-        gap: 1rem;
+    .hero-card-review {
+        align-self: flex-start;
+        margin-left: 0.15rem;
+        max-width: 230px;
     }
 
     .hero-photo {
-        width: min(360px, 92vw);
+        width: min(320px, 88vw);
         aspect-ratio: 43 / 58;
     }
 
-    .about-visual {
-        min-height: 360px;
+    .hero-card-pin {
+        align-self: flex-start;
+        margin-left: 0.9rem;
     }
 
-    .contact-panel {
-        gap: 1.6rem;
+    .hero-location-card {
+        left: 50%;
+        bottom: 92px;
+        min-width: 0;
+        width: min(88vw, 300px);
+        padding: 0.82rem 0.9rem;
+        transform: translateX(-50%) translateY(12px) scale(0.96);
+        transform-origin: center bottom;
+    }
+
+    .hero-location-card.is-visible {
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    .hero-location-card::after {
+        left: calc(50% - 8px);
+    }
+
+    .hero-card-social {
+        right: auto;
+        bottom: auto;
+        width: auto;
+        max-width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .about {
+        padding: 56px 0 68px;
+    }
+
+    .about-grid {
+        gap: 2rem;
+    }
+
+    .about-visual {
+        min-height: 320px;
+    }
+
+    .about-portrait {
+        width: min(240px, 72vw);
+    }
+
+    .section-heading {
+        margin-bottom: 1.8rem;
+    }
+
+    .portfolio-filters {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+        margin-bottom: 1.7rem;
+        scrollbar-width: none;
+    }
+
+    .portfolio-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-button {
+        white-space: nowrap;
+        padding: 0.66rem 0.85rem;
+        font-size: 0.84rem;
+    }
+
+    .portfolio-grid {
+        gap: 1rem;
+    }
+
+    .portfolio-card {
+        padding: 0.8rem;
+    }
+
+    .portfolio-card h3 {
+        font-size: 0.98rem;
+    }
+
+    .portfolio-modal {
+        padding: 0.7rem;
+    }
+
+    .portfolio-modal-dialog {
+        padding: 1rem;
+        border-radius: 20px;
+    }
+
+    .portfolio-modal-title {
+        font-size: 1.45rem;
+    }
+
+    .portfolio-modal-actions {
+        display: grid;
+    }
+
+    .portfolio-action {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .site-footer {
+        padding: 4rem 0 1.8rem;
+    }
+
+    .footer-panel {
+        padding: 3.8rem 1rem 1.2rem;
     }
 }
 
 @media (max-width: 560px) {
+    .container {
+        width: min(var(--container), calc(100% - 1rem));
+    }
+
+    .nav-shell {
+        grid-template-columns: 1fr auto;
+        gap: 0.75rem;
+    }
+
+    .brand {
+        min-width: 0;
+    }
+
+    .brand-copy strong {
+        font-size: 0.84rem;
+    }
+
     .brand-copy small {
         display: none;
+    }
+
+    .menu-toggle {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+    }
+
+    .site-nav {
+        left: 0.5rem;
+        right: 0.5rem;
+        padding: 0.8rem;
+        border-radius: 20px;
     }
 
     .button,
@@ -1672,9 +1871,140 @@ textarea {
 
     .hero-actions {
         flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(2.4rem, 14vw, 3.25rem);
+    }
+
+    .hero-pattern-left {
+        display: none;
+    }
+
+    .hero-pattern-right {
+        width: 72px;
+        height: 72px;
+        background-size: 12px 12px;
+        right: 0;
+        top: 2%;
+    }
+
+    .orbit-large {
+        width: 96%;
+        top: 16%;
+        right: 2%;
+    }
+
+    .orbit-small {
+        width: 76%;
+        top: 26%;
+        right: 12%;
+    }
+
+    .hero-photo {
+        width: min(286px, 84vw);
+    }
+
+    .hero-card-review {
+        width: min(100%, 220px);
+        padding: 0.72rem 0.85rem;
+    }
+
+    .stars {
+        font-size: 0.82rem;
+    }
+
+    .hero-card-review p {
+        font-size: 0.8rem;
+    }
+
+    .hero-card-review span {
+        font-size: 0.72rem;
+    }
+
+    .hero-card-pin {
+        margin-left: 0.4rem;
+    }
+
+    .hero-location-card {
+        bottom: 76px;
+        width: min(90vw, 280px);
     }
 
     .hero-card-social {
+        width: auto;
+        gap: 0.38rem;
+        padding: 0.42rem 0.5rem;
+        justify-content: center;
+    }
+
+    .hero-card-social a {
+        width: 34px;
+        height: 34px;
+    }
+
+    .about-copy h2,
+    .section-heading h2 {
+        font-size: clamp(1.9rem, 10vw, 2.4rem);
+    }
+
+    .about-copy p,
+    .section-heading p,
+    .service-card p,
+    .portfolio-card p {
+        font-size: 0.88rem;
+    }
+
+    .about-visual {
+        min-height: 288px;
+    }
+
+    .about-circle-one {
+        width: 118px;
+        height: 118px;
+    }
+
+    .about-circle-two {
+        width: 48px;
+        height: 48px;
+    }
+
+    .about-circle-three {
+        width: 58px;
+        height: 58px;
+    }
+
+    .skill-fill::after {
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85);
+    }
+
+    .services {
+        padding: 56px 0 68px;
+    }
+
+    .service-card {
+        padding: 1.35rem 1.1rem;
+    }
+
+    .service-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 1.45rem;
+    }
+
+    .portfolio {
+        padding: 68px 0 76px;
+    }
+
+    .portfolio-media {
+        aspect-ratio: 16 / 10.5;
+    }
+
+    .portfolio-open {
         width: 100%;
         justify-content: center;
     }
@@ -1733,8 +2063,30 @@ textarea {
         font-size: 0.88rem;
     }
 
+    .footer-column a,
+    .footer-column p {
+        gap: 0.45rem;
+        font-size: 0.86rem;
+    }
+
     .footer-bottom {
         flex-direction: column;
         text-align: center;
+        gap: 0.85rem;
+    }
+
+    .footer-social {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-social a {
+        width: 36px;
+        height: 36px;
+    }
+
+    .footer-pill {
+        width: 100%;
+        max-width: 240px;
     }
 }
