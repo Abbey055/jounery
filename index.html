@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Portfolio of Ssenkubuge Abbey Musumba, a web and app developer from Mbarara, Uganda.">
-    <title>Ssenkubuge Abbey | Portfolio</title>
+        content="Portfolio of Ssenkubuge Abbey, an IT specialist and software developer focused on practical digital solutions.">
+    <title>Ssenkubuge Abbey | IT Specialist &amp; Software Developer</title>
     <link rel="icon" type="image/png" href="assets/images/my-avatar.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="assets/css/portfolio.css">
 </head>
 
@@ -21,11 +22,8 @@
     <header class="site-header">
         <div class="container nav-shell">
             <a class="brand" href="#home" aria-label="Ssenkubuge Abbey portfolio home">
-                <span class="brand-mark">SM</span>
-                <span class="brand-copy">
-                    <strong>Ssenkubuge Abbey</strong>
-                    <small>journey</small>
-                </span>
+                <span class="brand-mark">SA</span>
+                <span class="brand-copy">Ssenkubuge Abbey</span>
             </a>
 
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
@@ -36,154 +34,306 @@
             </button>
 
             <nav class="site-nav" id="site-nav">
-                <a href="#home">Home</a>
+                <a class="is-active" href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#resume">Resume</a>
                 <a href="#services">Services</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#about">About Us</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
                 <a href="https://musumba.hashnode.dev/" target="_blank" rel="noreferrer">Blog</a>
-                <a href="#contact">Contact Us</a>
+                <a href="#contact">Contact</a>
             </nav>
-
-            <a class="nav-cta" href="mailto:ssenkubugeabbey055@gmail.com">Let's Talk</a>
         </div>
     </header>
 
     <main>
         <section class="hero section" id="home">
             <div class="container hero-grid">
-                <div class="hero-copy">
-                    <p class="eyebrow">Hi I am</p>
-                    <p class="hero-name">Ssenkubuge Abbey Musumba</p>
-                    <h1>
-                        <span>UI &amp; UX</span>
-                        <strong>Designer</strong>
-                    </h1>
+                <div class="hero-copy" data-reveal>
+                    <p class="section-kicker">HELLO!</p>
+                    <h1>I'm <span>Ssenkubuge Abbey</span></h1>
+                    <p class="hero-role">IT Specialist &amp; Software Developer</p>
                     <p class="hero-text">
-                        With a passion for clean, intuitive, and effective design, I create digital products that
-                        enhance user engagement and deliver aesthetic, interactive experiences that make a lasting
-                        impact.
+                        I am a passionate IT specialist and developer with a strong foundation in software
+                        development, system design, and problem-solving. I enjoy building practical, real-world
+                        solutions that improve efficiency and user experience.
                     </p>
 
                     <div class="hero-actions">
-                        <a class="button button-primary" href="#contact">Contact Us</a>
-                        <a class="button button-secondary" href="#portfolio">Portfolio</a>
+                        <a class="button button-primary" href="#contact">Hire Me</a>
+                        <a class="button button-secondary" href="#projects">My Works</a>
+                    </div>
+
+                    <div class="hero-facts" aria-label="Core strengths">
+                        <span>Java &amp; Python</span>
+                        <span>Android Development</span>
+                        <span>System Design</span>
                     </div>
                 </div>
 
-                <div class="hero-visual">
-                    <div class="hero-pattern hero-pattern-left"></div>
-                    <div class="hero-pattern hero-pattern-right"></div>
-                    <div class="orbit orbit-large"></div>
-                    <div class="orbit orbit-small"></div>
+                <div class="hero-visual" data-reveal>
+                    <div class="hero-orbit hero-orbit-large"></div>
+                    <div class="hero-orbit hero-orbit-small"></div>
 
-                    <div class="hero-card hero-card-review">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p>MUST Student IT</p>
-                        <span>Focused on useful digital experiences</span>
+                    <div class="hero-badge hero-badge-top">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Scalable Systems</span>
                     </div>
 
-                    <figure class="hero-photo">
-                        <img src="assets/images/abbey.jpg" alt="Ssenkubuge Abbey standing outdoors">
+                    <figure class="hero-portrait">
+                        <img src="assets/images/abbey.jpg" alt="Portrait of Ssenkubuge Abbey">
                     </figure>
 
-                    <button class="hero-card hero-card-pin" type="button" aria-expanded="false"
-                        aria-controls="heroLocationCard" aria-label="Show location">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </button>
-
-                    <div class="hero-location-card" id="heroLocationCard" aria-hidden="true">
-                        <strong>Mbarara, Uganda</strong>
-                        <span>Mbarara University of Science and Technology</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Mbarara+University+of+Science+and+Technology+(MUST)"
-                            target="_blank" rel="noreferrer">Open in Maps</a>
-                    </div>
-
-                    <div class="hero-card hero-card-social">
-                        <a class="social-whatsapp" href="https://wa.me/256705149399" target="_blank" rel="noreferrer"
-                            aria-label="WhatsApp">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                        <a class="social-linkedin" href="https://www.linkedin.com/in/musumba" target="_blank"
-                            rel="noreferrer" aria-label="LinkedIn profile">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                        </a>
-                        <a class="social-dev" href="https://musumba.hashnode.dev/" target="_blank" rel="noreferrer"
-                            aria-label="Developer blog">
-                            <i class="fa-brands fa-dev"></i>
-                        </a>
-                        <a class="social-github" href="https://github.com/musumbasa" target="_blank" rel="noreferrer"
-                            aria-label="GitHub">
-                            <i class="fa-brands fa-github"></i>
-                        </a>
+                    <div class="hero-badge hero-badge-bottom">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>AI &amp; Automation</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="about section" id="about">
-            <div class="container about-grid">
-                <div class="about-visual">
-                    <div class="about-circle about-circle-one"></div>
-                    <div class="about-circle about-circle-two"></div>
-                    <div class="about-circle about-circle-three"></div>
-
-                    <figure class="about-portrait">
-                        <img src="assets/images/abbey.jpg" alt="Ssenkubuge Abbey portrait">
-                    </figure>
+            <div class="container split-grid">
+                <div class="about-visual" data-reveal>
+                    <div class="portrait-panel">
+                        <span class="portrait-outline"></span>
+                        <figure class="about-portrait">
+                            <img src="assets/images/abbey.jpg" alt="Ssenkubuge Abbey portrait">
+                        </figure>
+                    </div>
                 </div>
 
-                <div class="about-copy">
-                    <h2>About Me</h2>
-                    <p class="about-intro">
-                        Passionate UI / UX Designer with a Creative Approach to Crafting Intuitive and Engaging User
-                        Experiences
+                <div class="about-copy" data-reveal>
+                    <div class="section-heading">
+                        <span class="section-ghost">About</span>
+                        <p class="section-kicker">ABOUT ME</p>
+                        <h2>Building useful software with practical thinking and user-focused execution.</h2>
+                    </div>
+
+                    <p>
+                        I am a passionate IT specialist and developer with a strong foundation in software
+                        development, system design, and problem-solving.
                     </p>
                     <p>
-                        I'm an Information Technology student at Mbarara University of Science and Technology who enjoys
-                        transforming ideas into useful, well-structured digital products with clear interfaces and code
-                        that is easy to maintain.
+                        I enjoy building practical, real-world solutions that improve efficiency and user experience
+                        while continuously learning and staying updated with modern technologies.
                     </p>
 
-                    <div class="skills">
+                    <div class="about-details">
+                        <div class="detail-row">
+                            <span>Name</span>
+                            <strong>Ssenkubuge Abbey</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Role</span>
+                            <strong>IT Specialist &amp; Software Developer</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Base</span>
+                            <strong>Mbarara, Uganda</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Focus</span>
+                            <strong>Software Development, System Design, Problem Solving</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Interests</span>
+                            <strong>Healthcare, Automation, Smart Systems</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Email</span>
+                            <strong><a href="mailto:ssenkubugeabbey055@gmail.com">ssenkubugeabbey055@gmail.com</a></strong>
+                        </div>
+                    </div>
+
+                    <a class="button button-primary" href="#resume">View Resume</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="resume section" id="resume">
+            <div class="container">
+                <div class="section-heading section-heading-center" data-reveal>
+                    <span class="section-ghost">Resume</span>
+                    <p class="section-kicker">RESUME</p>
+                    <h2>What I bring from idea, planning, and architecture to deployment.</h2>
+                    <p>
+                        A strong working foundation across development, mobile solutions, intelligent systems, and
+                        structured problem solving.
+                    </p>
+                </div>
+
+                <div class="resume-grid">
+                    <article class="resume-card" data-reveal>
+                        <span class="resume-index">01</span>
+                        <h3>Software Development</h3>
+                        <p>
+                            Building applications from concept to deployment with clean structure, reliable logic,
+                            and practical delivery in mind.
+                        </p>
+                    </article>
+
+                    <article class="resume-card" data-reveal>
+                        <span class="resume-index">02</span>
+                        <h3>System Design</h3>
+                        <p>
+                            Designing scalable systems, planning architecture, and structuring databases for
+                            performance, clarity, and growth.
+                        </p>
+                    </article>
+
+                    <article class="resume-card" data-reveal>
+                        <span class="resume-index">03</span>
+                        <h3>Problem Solving</h3>
+                        <p>
+                            Creating intelligent solutions, including AI-based systems for data analysis,
+                            automation, and prediction.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="services section" id="services">
+            <div class="container">
+                <div class="section-heading section-heading-center" data-reveal>
+                    <span class="section-ghost">Services</span>
+                    <p class="section-kicker">EXPERIENCE</p>
+                    <h2>Hands-on experience across the areas that shape modern software products.</h2>
+                </div>
+
+                <div class="service-grid">
+                    <article class="service-card" data-reveal>
+                        <div class="service-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3>Programming Languages</h3>
+                        <p>
+                            Strong working experience with Java and Python for building dependable software and
+                            solving technical problems.
+                        </p>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <div class="service-icon">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3>Mobile App Development</h3>
+                        <p>
+                            Android development in Java with attention to UI/UX design, usability, and clean API
+                            integration.
+                        </p>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <div class="service-icon">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                        <h3>System Design</h3>
+                        <p>
+                            Planning efficient architectures, system flows, and database structures that support
+                            scalable applications.
+                        </p>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <div class="service-icon">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <h3>Full Development Flow</h3>
+                        <p>
+                            Taking software from concept to deployment with a focus on structure, maintainability,
+                            and real-world use.
+                        </p>
+                    </article>
+
+                    <article class="service-card" data-reveal>
+                        <div class="service-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3>AI-Based Solutions</h3>
+                        <p>
+                            Applying intelligent approaches to data analysis, prediction, and automation to make
+                            systems more useful.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills section" id="skills">
+            <div class="container">
+                <div class="section-heading section-heading-center" data-reveal>
+                    <span class="section-ghost">Skills</span>
+                    <p class="section-kicker">MY SKILLS</p>
+                    <h2>Technical strengths visualized around the work I do most.</h2>
+                    <p>
+                        Focused on practical engineering, thoughtful interfaces, and systems that are efficient,
+                        scalable, and user-centered.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-column" data-reveal>
                         <article class="skill-item">
-                            <div class="skill-head">
-                                <h3>UI / UX</h3>
+                            <div class="skill-label">
+                                <h3>Java</h3>
+                                <span>90%</span>
                             </div>
                             <div class="skill-track">
-                                <span class="skill-fill accent-plum" data-level="90"></span>
+                                <span class="skill-fill" data-level="90"></span>
                             </div>
                         </article>
 
                         <article class="skill-item">
-                            <div class="skill-head">
-                                <h3>Website Design</h3>
+                            <div class="skill-label">
+                                <h3>Python</h3>
+                                <span>86%</span>
                             </div>
                             <div class="skill-track">
-                                <span class="skill-fill accent-gold" data-level="92"></span>
+                                <span class="skill-fill" data-level="86"></span>
                             </div>
                         </article>
 
                         <article class="skill-item">
-                            <div class="skill-head">
-                                <h3>App Design</h3>
+                            <div class="skill-label">
+                                <h3>Android Development</h3>
+                                <span>88%</span>
                             </div>
                             <div class="skill-track">
-                                <span class="skill-fill accent-slate" data-level="84"></span>
+                                <span class="skill-fill" data-level="88"></span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="skill-column" data-reveal>
+                        <article class="skill-item">
+                            <div class="skill-label">
+                                <h3>UI/UX Design</h3>
+                                <span>82%</span>
+                            </div>
+                            <div class="skill-track">
+                                <span class="skill-fill" data-level="82"></span>
                             </div>
                         </article>
 
                         <article class="skill-item">
-                            <div class="skill-head">
-                                <h3>Graphic Design</h3>
+                            <div class="skill-label">
+                                <h3>API Integration</h3>
+                                <span>84%</span>
                             </div>
                             <div class="skill-track">
-                                <span class="skill-fill accent-indigo" data-level="78"></span>
+                                <span class="skill-fill" data-level="84"></span>
+                            </div>
+                        </article>
+
+                        <article class="skill-item">
+                            <div class="skill-label">
+                                <h3>System Design</h3>
+                                <span>87%</span>
+                            </div>
+                            <div class="skill-track">
+                                <span class="skill-fill" data-level="87"></span>
                             </div>
                         </article>
                     </div>
@@ -191,235 +341,114 @@
             </div>
         </section>
 
-        <section class="services section" id="services">
+        <section class="projects section" id="projects">
             <div class="container">
-                <div class="section-heading">
-                    <h2>My Design Services</h2>
+                <div class="section-heading section-heading-center" data-reveal>
+                    <span class="section-ghost">Projects</span>
+                    <p class="section-kicker">FOCUS AREAS</p>
+                    <h2>Fields where I want to keep building innovative, real-world applications.</h2>
                     <p>
-                        Crafting visually engaging interfaces that are both intuitive and user-centered, ensuring a
-                        seamless experience.
+                        I am particularly interested in healthcare, automation, and smart systems, and I keep
+                        expanding my skills to create stronger solutions in each area.
                     </p>
                 </div>
 
-                <div class="service-grid">
-                    <article class="service-card">
-                        <div class="service-icon">
-                            <i class="fa-solid fa-pen-ruler"></i>
+                <div class="project-grid">
+                    <article class="project-card" data-reveal>
+                        <div class="project-icon">
+                            <i class="fa-solid fa-heart-pulse"></i>
                         </div>
-                        <h3>UI/UX Design</h3>
+                        <span class="project-tag">Healthcare</span>
+                        <h3>Healthcare Applications</h3>
                         <p>
-                            User-centered designs that are visually engaging and functionally seamless. My approach
-                            Read more...
+                            Developing systems that can improve workflows, data visibility, prediction, and user
+                            experience in health-related environments.
                         </p>
                     </article>
 
-                    <article class="service-card is-featured">
-                        <div class="service-icon">
-                            <i class="fa-solid fa-laptop-code"></i>
+                    <article class="project-card" data-reveal>
+                        <div class="project-icon">
+                            <i class="fa-solid fa-gears"></i>
                         </div>
-                        <h3>Website Design</h3>
+                        <span class="project-tag">Automation</span>
+                        <h3>Automation Tools</h3>
                         <p>
-                            User-centered designs that are visually engaging and functionally seamless. My approach
-                            Read more...
+                            Designing software that removes repetitive work, improves efficiency, and creates cleaner
+                            operational processes.
                         </p>
                     </article>
 
-                    <article class="service-card">
-                        <div class="service-icon">
-                            <i class="fa-solid fa-mobile-screen-button"></i>
+                    <article class="project-card" data-reveal>
+                        <div class="project-icon">
+                            <i class="fa-solid fa-microchip"></i>
                         </div>
-                        <h3>App Design</h3>
+                        <span class="project-tag">Smart Systems</span>
+                        <h3>Intelligent Platforms</h3>
                         <p>
-                            User-centered designs that are visually engaging and functionally seamless. My approach
-                            Read more...
-                        </p>
-                    </article>
-
-                    <article class="service-card">
-                        <div class="service-icon">
-                            <i class="fa-solid fa-object-group"></i>
-                        </div>
-                        <h3>Graphic Design</h3>
-                        <p>
-                            User-centered designs that are visually engaging and functionally seamless. My approach
-                            Read more...
+                            Building AI-driven and data-aware systems that support analysis, prediction, and smarter
+                            decision making.
                         </p>
                     </article>
                 </div>
             </div>
         </section>
-
-        <section class="portfolio section" id="portfolio">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>My Portfolio</h2>
-                    <p>
-                        Explore a collection of my UI/UX design projects, each crafted to deliver seamless,
-                        user-centered experiences.
-                    </p>
-                </div>
-
-                <div class="portfolio-filters" role="toolbar" aria-label="Project filters">
-                    <button class="filter-button is-active" type="button" data-filter="all"
-                        aria-pressed="true">All</button>
-                    <button class="filter-button" type="button" data-filter="uiux" aria-pressed="false">UI/UX</button>
-                    <button class="filter-button" type="button" data-filter="website"
-                        aria-pressed="false">Website Design</button>
-                    <button class="filter-button" type="button" data-filter="app" aria-pressed="false">App Design</button>
-                    <button class="filter-button" type="button" data-filter="graphic"
-                        aria-pressed="false">Graphic Design</button>
-                </div>
-
-                <div class="portfolio-grid">
-                    <article class="portfolio-card" data-category="app uiux">
-                        <div class="portfolio-media">
-                            <img src="assets/images/civicwatch-app.png" alt="CivicWatch app preview" loading="lazy">
-                        </div>
-                        <div class="portfolio-card-body">
-                            <span class="portfolio-tag">App Project</span>
-                            <h3>CivicWatch App</h3>
-                            <p>
-                                A community-driven Android app for reporting local issues with maps, voting, and
-                                multilingual support.
-                            </p>
-                            <button class="portfolio-open" type="button" data-project="civicwatch">View Project</button>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-card" data-category="website uiux">
-                        <div class="portfolio-media">
-                            <img src="assets/images/devfollow.png" alt="DevFollow platform preview" loading="lazy">
-                        </div>
-                        <div class="portfolio-card-body">
-                            <span class="portfolio-tag">Web Project</span>
-                            <h3>DevFollow - MUST Community</h3>
-                            <p>
-                                A developer community platform for MUST students to connect, collaborate, and showcase
-                                their projects.
-                            </p>
-                            <button class="portfolio-open" type="button" data-project="devfollow">View Project</button>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-card" data-category="graphic">
-                        <div class="portfolio-media">
-                            <img src="assets/images/collect.png" alt="Python bootcamp content preview" loading="lazy">
-                        </div>
-                        <div class="portfolio-card-body">
-                            <span class="portfolio-tag">Learning Content</span>
-                            <h3>Python Bootcamp Content</h3>
-                            <p>
-                                Structured Python learning visuals and tutorial content designed to make concepts easier
-                                to understand.
-                            </p>
-                            <button class="portfolio-open" type="button" data-project="python-bootcamp">View Project</button>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <footer class="site-footer" id="contact">
-        <div class="container footer-panel">
-            <div class="footer-portrait">
-                <img src="assets/images/abbey.jpg" alt="Ssenkubuge Abbey portrait">
-            </div>
+    <footer class="contact section" id="contact">
+        <div class="container contact-shell">
+            <div class="contact-copy" data-reveal>
+                <p class="section-kicker">CONTACT</p>
+                <h2>Let's build software that is practical, scalable, and useful.</h2>
+                <p>
+                    If you want a developer who cares about clean systems, real-world problem solving, and better
+                    user experiences, I'm ready to collaborate.
+                </p>
 
-            <div class="footer-brand">
-                <h2>Ssenkubuge Abbey</h2>
-                <p>Where useful digital products begin</p>
-            </div>
-
-            <div class="footer-shell">
-                <section class="footer-column">
-                    <h3>Contact</h3>
-                    <a href="mailto:ssenkubugeabbey055@gmail.com">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>ssenkubugeabbey055@gmail.com</span>
-                    </a>
-                    <a href="tel:+256705149399">
-                        <i class="fa-solid fa-phone"></i>
-                        <span>+256 705 149 399</span>
-                    </a>
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Mbarara, Uganda</span>
-                    </p>
-                </section>
-
-                <section class="footer-column">
-                    <h3>Connect</h3>
-                    <a href="https://wa.me/256705149399" target="_blank" rel="noreferrer">
-                        <i class="fa-brands fa-whatsapp"></i>
-                        <span>WhatsApp</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/musumba" target="_blank" rel="noreferrer">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://github.com/musumbasa" target="_blank" rel="noreferrer">
-                        <i class="fa-brands fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://musumba.hashnode.dev/" target="_blank" rel="noreferrer">
-                        <i class="fa-brands fa-dev"></i>
-                        <span>Dev Blog</span>
-                    </a>
-                </section>
-
-                <section class="footer-column">
-                    <h3>Quick Links</h3>
-                    <a href="#home">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Home</span>
-                    </a>
-                    <a href="#services">
-                        <i class="fa-solid fa-briefcase"></i>
-                        <span>Services</span>
-                    </a>
-                    <a href="#portfolio">
-                        <i class="fa-solid fa-layer-group"></i>
-                        <span>Portfolio</span>
-                    </a>
-                    <a href="#contact">
-                        <i class="fa-solid fa-address-card"></i>
-                        <span>Contact</span>
-                    </a>
-                </section>
-            </div>
-
-            <div class="footer-bottom">
-                <a class="footer-pill footer-pill-primary" href="mailto:ssenkubugeabbey055@gmail.com">Start a project</a>
-                <div class="footer-social">
-                    <a href="https://wa.me/256705149399" target="_blank" rel="noreferrer" aria-label="WhatsApp">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/musumba" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/musumbasa" target="_blank" rel="noreferrer" aria-label="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://musumba.hashnode.dev/" target="_blank" rel="noreferrer" aria-label="Developer blog">
-                        <i class="fa-brands fa-dev"></i>
-                    </a>
+                <div class="contact-actions">
+                    <a class="button button-primary" href="mailto:ssenkubugeabbey055@gmail.com">Send Email</a>
+                    <a class="button button-secondary" href="tel:+256705149399">Call Me</a>
                 </div>
-                <p>&copy; <span data-year></span> Ssenkubuge Abbey</p>
             </div>
+
+            <div class="contact-panel" data-reveal>
+                <a class="contact-item" href="mailto:ssenkubugeabbey055@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <span>Email</span>
+                        <strong>ssenkubugeabbey055@gmail.com</strong>
+                    </div>
+                </a>
+
+                <a class="contact-item" href="tel:+256705149399">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <span>Phone</span>
+                        <strong>+256 705 149 399</strong>
+                    </div>
+                </a>
+
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <span>Location</span>
+                        <strong>Mbarara, Uganda</strong>
+                    </div>
+                </div>
+
+                <a class="contact-item" href="https://github.com/musumbasa" target="_blank" rel="noreferrer">
+                    <i class="fa-brands fa-github"></i>
+                    <div>
+                        <span>GitHub</span>
+                        <strong>github.com/musumbasa</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; <span data-year></span> Ssenkubuge Abbey. Built for bold ideas and useful systems.</p>
         </div>
     </footer>
-
-    <div class="portfolio-modal" id="portfolioModal" aria-hidden="true">
-        <div class="portfolio-modal-backdrop" data-modal-close></div>
-        <div class="portfolio-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="portfolioModalTitle">
-            <button class="portfolio-modal-close" type="button" data-modal-close aria-label="Close project details">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="portfolio-modal-content" id="portfolioModalContent"></div>
-        </div>
-    </div>
 
     <script src="assets/js/portfolio.js"></script>
 </body>
