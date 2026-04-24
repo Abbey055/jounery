@@ -52,11 +52,11 @@
                 <div class="hero-copy" data-reveal>
                     <p class="section-kicker">HELLO!</p>
                     <h1>I'm <span>Ssenkubuge Abbey</span></h1>
-                    <p class="hero-role">IT Specialist &amp; Software Developer</p>
+                    <p class="hero-role">IT Specialist &amp; Fullstack Developer</p>
                     <p class="hero-text">
-                        I am a passionate IT specialist and developer with a strong foundation in software
-                        development, system design, and problem-solving. I enjoy building practical, real-world
-                        solutions that improve efficiency and user experience.
+                        I build practical digital products with a strong focus on clean interfaces, reliable systems,
+                        and real user problems. My work blends software engineering, product thinking, and thoughtful
+                        execution.
                     </p>
 
                     <div class="hero-actions">
@@ -65,15 +65,15 @@
                     </div>
 
                     <div class="hero-facts" aria-label="Core strengths">
-                        <span>Java &amp; Python</span>
-                        <span>Android Development</span>
+                        <span>Web Platforms</span>
+                        <span>Android Apps</span>
                         <span>System Design</span>
                     </div>
                 </div>
 
                 <div class="hero-visual" data-reveal>
-                    <div class="hero-orbit hero-orbit-large"></div>
-                    <div class="hero-orbit hero-orbit-small"></div>
+                    <span class="hero-glow hero-glow-primary"></span>
+                    <span class="hero-glow hero-glow-secondary"></span>
 
                     <div class="hero-badge hero-badge-top">
                         <i class="fa-solid fa-layer-group"></i>
@@ -96,7 +96,6 @@
             <div class="container split-grid">
                 <div class="about-visual" data-reveal>
                     <div class="portrait-panel">
-                        <span class="portrait-outline"></span>
                         <figure class="about-portrait">
                             <img src="assets/images/abbey.jpg" alt="Ssenkubuge Abbey portrait">
                         </figure>
@@ -104,20 +103,15 @@
                 </div>
 
                 <div class="about-copy" data-reveal>
-                    <div class="section-heading">
+                    <div class="section-heading about-heading">
                         <span class="section-ghost">About</span>
                         <p class="section-kicker">ABOUT ME</p>
-                        <h2>Building useful software with practical thinking and user-focused execution.</h2>
+                        <h2>About Me</h2>
+                        <p class="about-lead">
+                            I build practical software for real-world use with a strong focus on community platforms,
+                            civic tools, and learning experiences.
+                        </p>
                     </div>
-
-                    <p>
-                        I am a passionate IT specialist and developer with a strong foundation in software
-                        development, system design, and problem-solving.
-                    </p>
-                    <p>
-                        I enjoy building practical, real-world solutions that improve efficiency and user experience
-                        while continuously learning and staying updated with modern technologies.
-                    </p>
 
                     <div class="about-details">
                         <div class="detail-row">
@@ -134,19 +128,22 @@
                         </div>
                         <div class="detail-row">
                             <span>Focus</span>
-                            <strong>Software Development, System Design, Problem Solving</strong>
-                        </div>
-                        <div class="detail-row">
-                            <span>Interests</span>
-                            <strong>Healthcare, Automation, Smart Systems</strong>
+                            <strong>Software Development &amp; System Design</strong>
                         </div>
                         <div class="detail-row">
                             <span>Email</span>
                             <strong><a href="mailto:ssenkubugeabbey055@gmail.com">ssenkubugeabbey055@gmail.com</a></strong>
                         </div>
+                        <div class="detail-row">
+                            <span>Phone</span>
+                            <strong><a href="tel:+256705149399">+256 705 149 399</a></strong>
+                        </div>
                     </div>
 
-                    <a class="button button-primary" href="#resume">View Resume</a>
+                    <div class="about-summary">
+                        <p><span>3</span> Project complete</p>
+                        <a class="button button-primary about-button" href="#projects">View Projects</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -343,51 +340,118 @@
 
         <section class="projects section" id="projects">
             <div class="container">
-                <div class="section-heading section-heading-center" data-reveal>
+                <div class="section-heading section-heading-center project-heading" data-reveal="up" style="--reveal-delay: 0.02s;">
                     <span class="section-ghost">Projects</span>
-                    <p class="section-kicker">FOCUS AREAS</p>
-                    <h2>Fields where I want to keep building innovative, real-world applications.</h2>
+                    <p class="section-kicker">FEATURED PROJECTS</p>
+                    <h2>Selected projects with clearer structure, stronger interaction, and real product focus.</h2>
                     <p>
-                        I am particularly interested in healthcare, automation, and smart systems, and I keep
-                        expanding my skills to create stronger solutions in each area.
+                        A tighter showcase of work across community platforms, civic reporting, and learning systems,
+                        designed to feel easier to scan and easier to explore.
                     </p>
                 </div>
 
                 <div class="project-grid">
-                    <article class="project-card" data-reveal>
-                        <div class="project-icon">
-                            <i class="fa-solid fa-heart-pulse"></i>
+                    <article class="project-card project-card-featured" data-reveal="left" style="--reveal-delay: 0.08s;">
+                        <a class="project-media project-media-link project-media-devfollow" href="https://devfellowmust.web.app" target="_blank" rel="noreferrer" aria-label="Open DevFollow live demo">
+                            <img src="assets/images/devfollow.png" alt="DevFollow project cover" loading="lazy">
+                            <span class="project-media-caption">Live community UI</span>
+                        </a>
+                        <div class="project-copy">
+                            <div class="project-meta">
+                                <span class="project-tag">Community Platform</span>
+                                <span class="project-state">Live Project</span>
+                            </div>
+                            <div class="project-title-row">
+                                <h3>DevFollow</h3>
+                                <span class="project-number">01</span>
+                            </div>
+                            <p>
+                                A developer community platform for MUST students to connect, share projects, discover
+                                resources, and collaborate on innovative ideas.
+                            </p>
+                            <div class="project-stack" aria-label="DevFollow technologies">
+                                <span>Vite</span>
+                                <span>JavaScript</span>
+                                <span>Firebase</span>
+                                <span>REST APIs</span>
+                                <span>Chakra UI</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-links">
+                                    <a class="project-link-button project-link-button-primary" href="https://devfellowmust.web.app" target="_blank" rel="noreferrer">Open Live</a>
+                                    <a class="project-link-button" href="https://github.com/MusumbaAbeljr055/DevFollow" target="_blank" rel="noreferrer">Source Code</a>
+                                </div>
+                                <span class="project-footnote">Built for MUST developers</span>
+                            </div>
                         </div>
-                        <span class="project-tag">Healthcare</span>
-                        <h3>Healthcare Applications</h3>
-                        <p>
-                            Developing systems that can improve workflows, data visibility, prediction, and user
-                            experience in health-related environments.
-                        </p>
                     </article>
 
-                    <article class="project-card" data-reveal>
-                        <div class="project-icon">
-                            <i class="fa-solid fa-gears"></i>
+                    <article class="project-card" data-reveal="up" style="--reveal-delay: 0.14s;">
+                        <a class="project-media project-media-link project-media-civicwatch" href="https://github.com/MusumbaAbeljr055/civicwatch" target="_blank" rel="noreferrer" aria-label="Open CivicWatch source code">
+                            <img src="assets/images/civicwatch-app.png" alt="CivicWatch project cover" loading="lazy">
+                            <span class="project-media-caption">Issue map and reporting</span>
+                        </a>
+                        <div class="project-copy">
+                            <div class="project-meta">
+                                <span class="project-tag">Civic Tech</span>
+                                <span class="project-state">Android App</span>
+                            </div>
+                            <div class="project-title-row">
+                                <h3>CivicWatch</h3>
+                                <span class="project-number">02</span>
+                            </div>
+                            <p>
+                                A mobile reporting app that helps communities log local issues, track responses, and
+                                surface urgent problems through maps, photos, and public engagement.
+                            </p>
+                            <div class="project-stack" aria-label="CivicWatch technologies">
+                                <span>Java</span>
+                                <span>Firebase</span>
+                                <span>Google Maps</span>
+                                <span>Material Design</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-links">
+                                    <a class="project-link-button project-link-button-primary" href="https://github.com/MusumbaAbeljr055/civicwatch" target="_blank" rel="noreferrer">View Code</a>
+                                    <a class="project-link-button" href="https://github.com/MusumbaAbeljr055/civicwatch/releases/download/v1.0.0-beta/CivicWatch-v1.0.0-beta.apk" target="_blank" rel="noreferrer">Get APK</a>
+                                </div>
+                                <span class="project-footnote">Community reporting flow</span>
+                            </div>
                         </div>
-                        <span class="project-tag">Automation</span>
-                        <h3>Automation Tools</h3>
-                        <p>
-                            Designing software that removes repetitive work, improves efficiency, and creates cleaner
-                            operational processes.
-                        </p>
                     </article>
 
-                    <article class="project-card" data-reveal>
-                        <div class="project-icon">
-                            <i class="fa-solid fa-microchip"></i>
+                    <article class="project-card" data-reveal="right" style="--reveal-delay: 0.2s;">
+                        <a class="project-media project-media-link project-media-bootcamp" href="bootcamp.html" aria-label="Open Python Bootcamp project">
+                            <img src="assets/images/control.png" alt="Python Bootcamp project cover" loading="lazy">
+                            <span class="project-media-caption">Lessons and guided practice</span>
+                        </a>
+                        <div class="project-copy">
+                            <div class="project-meta">
+                                <span class="project-tag">EdTech</span>
+                                <span class="project-state">Learning Platform</span>
+                            </div>
+                            <div class="project-title-row">
+                                <h3>Python Bootcamp</h3>
+                                <span class="project-number">03</span>
+                            </div>
+                            <p>
+                                An interactive learning platform built to teach Python through structured lessons,
+                                quizzes, guided practice, and student-friendly progress flows.
+                            </p>
+                            <div class="project-stack" aria-label="Python Bootcamp technologies">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                                <span>Learning UX</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-links">
+                                    <a class="project-link-button project-link-button-primary" href="bootcamp.html">Open Project</a>
+                                    <a class="project-link-button" href="https://github.com/musumbasa/python-bootcamp" target="_blank" rel="noreferrer">GitHub</a>
+                                </div>
+                                <span class="project-footnote">Student-first lesson design</span>
+                            </div>
                         </div>
-                        <span class="project-tag">Smart Systems</span>
-                        <h3>Intelligent Platforms</h3>
-                        <p>
-                            Building AI-driven and data-aware systems that support analysis, prediction, and smarter
-                            decision making.
-                        </p>
                     </article>
                 </div>
             </div>
