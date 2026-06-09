@@ -19,74 +19,96 @@
 </head>
 
 <body>
-    <header class="site-header">
-        <div class="container nav-shell">
-            <a class="brand" href="#home" aria-label="Ssenkubuge Abbey portfolio home">
-                <span class="brand-mark">SA</span>
-                <span class="brand-copy">Ssenkubuge Abbey</span>
-            </a>
-
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
-                aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <nav class="site-nav" id="site-nav">
-                <a class="is-active" href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#resume">Resume</a>
-                <a href="#services">Services</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="https://musumba.hashnode.dev/" target="_blank" rel="noreferrer">Blog</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
-
     <main>
         <section class="hero section" id="home">
-            <div class="container hero-grid">
-                <div class="hero-copy" data-reveal>
-                    <p class="section-kicker">HELLO!</p>
-                    <h1>I'm <span>Ssenkubuge Abbey</span></h1>
-                    <p class="hero-role">IT Specialist &amp; Fullstack Developer</p>
-                    <p class="hero-text">
-                        I build practical digital products with a strong focus on clean interfaces, reliable systems,
-                        and real user problems. My work blends software engineering, product thinking, and thoughtful
-                        execution.
-                    </p>
+            <div class="container hero-shell">
+                <header class="site-header">
+                    <a class="brand" href="#home" aria-label="Ssenkubuge Abbey portfolio home">
+                        <span class="brand-copy">Port<span>folio</span></span>
+                    </a>
 
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="#contact">Hire Me</a>
-                        <a class="button button-secondary" href="#projects">My Works</a>
+                    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+                        aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <nav class="site-nav" id="site-nav">
+                        <a class="is-active" href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#skills">Skills</a>
+                        <a href="#services">Services</a>
+                        <a href="#projects">Portfolio</a>
+                        <a href="#contact">Contact</a>
+                    </nav>
+
+                    <div class="header-actions">
+                        <div class="mode-dots" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <a class="download-link" href="#contact">
+                            <span>Download CV</span>
+                            <i class="fa-solid fa-download" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </header>
+
+                <div class="hero-grid">
+                    <div class="hero-visual" data-reveal>
+                        <span class="portrait-aura" aria-hidden="true"></span>
+                        <span class="portrait-ring portrait-ring-one" aria-hidden="true"></span>
+                        <span class="portrait-ring portrait-ring-two" aria-hidden="true"></span>
+
+                        <figure class="hero-portrait">
+                            <img src="assets/images/abbey.jpg" alt="Portrait of Ssenkubuge Abbey">
+                        </figure>
                     </div>
 
-                    <div class="hero-facts" aria-label="Core strengths">
-                        <span>Web Platforms</span>
-                        <span>Android Apps</span>
-                        <span>System Design</span>
+                    <div class="hero-copy" data-reveal>
+                        <p class="hero-eyebrow">Hello, I'm</p>
+                        <h1>Ssenkubuge Abbey</h1>
+                        <p class="hero-role">And I'm a <span>Fullstack Developer</span></p>
+                        <p class="hero-text">
+                            I build clean web platforms, Android apps, and practical digital systems with thoughtful
+                            interfaces, reliable logic, and real-world problem solving.
+                        </p>
+
+                        <div class="social-links" aria-label="Social links">
+                            <a href="https://github.com/musumbasa" target="_blank" rel="noreferrer"
+                                aria-label="GitHub profile"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://musumba.hashnode.dev/" target="_blank" rel="noreferrer"
+                                aria-label="Hashnode blog"><i class="fa-solid fa-blog"></i></a>
+                            <a href="mailto:ssenkubugeabbey055@gmail.com" aria-label="Email Ssenkubuge Abbey"><i
+                                    class="fa-solid fa-envelope"></i></a>
+                            <a href="tel:+256705149399" aria-label="Call Ssenkubuge Abbey"><i
+                                    class="fa-solid fa-phone"></i></a>
+                        </div>
+
+                        <div class="hero-actions">
+                            <a class="button button-primary" href="#contact">Hire Me</a>
+                            <a class="button button-secondary" href="#contact">Contact Me</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="hero-visual" data-reveal>
-                    <span class="hero-glow hero-glow-primary"></span>
-                    <span class="hero-glow hero-glow-secondary"></span>
-
-                    <div class="hero-badge hero-badge-top">
-                        <i class="fa-solid fa-layer-group"></i>
-                        <span>Scalable Systems</span>
+                <div class="hero-stats" aria-label="Portfolio stats">
+                    <div class="stat-item">
+                        <strong>1+</strong>
+                        <span>Years of<br>experience</span>
                     </div>
-
-                    <figure class="hero-portrait">
-                        <img src="assets/images/abbey.jpg" alt="Portrait of Ssenkubuge Abbey">
-                    </figure>
-
-                    <div class="hero-badge hero-badge-bottom">
-                        <i class="fa-solid fa-brain"></i>
-                        <span>AI &amp; Automation</span>
+                    <div class="stat-item">
+                        <strong>10+</strong>
+                        <span>Projects<br>completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>5+</strong>
+                        <span>Technologies<br>mastered</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>20+</strong>
+                        <span>Satisfied<br>users</span>
                     </div>
                 </div>
             </div>
@@ -141,7 +163,7 @@
                     </div>
 
                     <div class="about-summary">
-                        <p><span>3</span> Project complete</p>
+                        <p><span>1+</span> Year of experience</p>
                         <a class="button button-primary about-button" href="#projects">View Projects</a>
                     </div>
                 </div>
