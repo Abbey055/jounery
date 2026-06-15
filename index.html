@@ -542,6 +542,53 @@
         </div>
     </footer>
 
+    <!-- Paste the URL from a Zapier Chatbots iframe embed src into data-zapier-chat-url. -->
+    <div class="ai-chat-widget" data-ai-chat data-zapier-chat-url="">
+        <button class="ai-chat-toggle" type="button" aria-label="Open Abbey AI Virtual Assistant"
+            aria-expanded="false" aria-controls="abbey-ai-chat-panel" title="Abbey AI Virtual Assistant">
+            <span class="ai-chat-status-dot" aria-hidden="true"></span>
+            <img src="assets/images/abbey-ai-chat-icon.svg" alt="" aria-hidden="true">
+        </button>
+
+        <section class="ai-chat-panel" id="abbey-ai-chat-panel" aria-label="Abbey AI Virtual Assistant" hidden>
+            <header class="ai-chat-header">
+                <div class="ai-chat-title">
+                    <img src="assets/images/abbey-ai-chat-icon.svg" alt="" aria-hidden="true">
+                    <div>
+                        <p>Abbey AI</p>
+                        <span>Virtual Assistant</span>
+                    </div>
+                </div>
+                <button class="ai-chat-close" type="button" aria-label="Close Abbey AI chat">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </header>
+
+            <iframe class="ai-chat-frame" data-ai-chat-frame title="Abbey AI Virtual Assistant" loading="lazy"
+                hidden></iframe>
+
+            <div class="ai-chat-local" data-ai-chat-local>
+                <div class="ai-chat-messages" data-ai-chat-messages role="log" aria-live="polite"
+                    aria-relevant="additions"></div>
+
+                <div class="ai-chat-suggestions" aria-label="Suggested questions">
+                    <button type="button" data-ai-suggestion="What services does Abbey offer?">Services</button>
+                    <button type="button" data-ai-suggestion="Show me Abbey's projects.">Projects</button>
+                    <button type="button" data-ai-suggestion="I need a website for my business.">Request a website</button>
+                </div>
+
+                <form class="ai-chat-form" data-ai-chat-form>
+                    <label class="sr-only" for="abbey-ai-chat-input">Ask Abbey AI a question</label>
+                    <input id="abbey-ai-chat-input" data-ai-chat-input type="text" autocomplete="off"
+                        placeholder="Ask about Abbey's work">
+                    <button type="submit" aria-label="Send message">
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
     <script src="assets/js/portfolio.js"></script>
 </body>
 
