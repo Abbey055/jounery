@@ -1534,46 +1534,50 @@ button {
     position: relative;
     display: grid;
     place-items: center;
-    width: 40px;
-    height: 40px;
+    width: 46px;
+    height: 46px;
     padding: 0;
     border: 0;
-    border-radius: 11px;
-    background: #ffffff;
-    box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.28),
-        0 0 16px rgba(23, 200, 255, 0.12);
+    border-radius: 0;
+    background: transparent;
+    color: #ffffff;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.36));
     cursor: pointer;
     transition:
         transform 0.22s ease,
-        box-shadow 0.22s ease;
+        color 0.22s ease,
+        filter 0.22s ease;
 }
 
 .ai-chat-toggle:hover,
 .ai-chat-toggle:focus-visible,
 .ai-chat-widget.is-open .ai-chat-toggle {
     transform: translateY(-4px);
-    box-shadow:
-        0 16px 34px rgba(0, 0, 0, 0.34),
-        0 0 24px rgba(23, 200, 255, 0.2);
+    color: var(--cyan-bright);
+    filter: drop-shadow(0 10px 16px rgba(23, 200, 255, 0.26));
+}
+
+.ai-chat-toggle > i {
+    font-size: 2.05rem;
+    line-height: 1;
 }
 
 .ai-chat-status-dot {
     position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 9px;
-    height: 9px;
+    top: 5px;
+    right: 4px;
+    width: 10px;
+    height: 10px;
     border: 0;
     border-radius: 50%;
     background: #25d366;
-    box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.18);
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.18);
 }
 
 .ai-chat-panel {
     position: absolute;
     right: 0;
-    bottom: calc(100% + 10px);
+    bottom: calc(100% + 8px);
     display: flex;
     flex-direction: column;
     width: min(390px, calc(100vw - 2rem));
@@ -2186,16 +2190,19 @@ button {
     }
 
     .ai-chat-toggle {
-        width: 40px;
-        height: 40px;
-        border-radius: 11px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .ai-chat-toggle > i {
+        font-size: 1.95rem;
     }
 
     .ai-chat-panel {
         position: fixed;
         left: 10px;
         right: 10px;
-        bottom: 62px;
+        bottom: 64px;
         width: auto;
         height: min(560px, calc(100vh - 110px));
         border-radius: 14px;
