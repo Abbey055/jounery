@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const initAbbeyChat = () => {
+    const initSsenksTechChat = () => {
         if (!chatWidget) {
             return;
         }
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (hasAny(text, ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"])) {
-                return "Hello, I am Abbey AI, the virtual assistant for Ssenkubuge Abbey. You can ask about Abbey's services, projects, skills, education, or how to start a project.";
+                return "Hello, I am SsenksTech, the virtual assistant for Ssenkubuge Abbey. You can ask about Abbey's services, projects, skills, education, or how to start a project.";
             }
 
             if (hasAny(text, ["service", "offer", "do you do", "what can", "solutions"])) {
@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        addMessage("Hello, I am Abbey AI. Ask me about Abbey's services, projects, skills, education, or project consultations.");
+        addMessage("Hello, I am SsenksTech. Ask me about Abbey's services, projects, skills, education, or project consultations.");
 
         if (form && input instanceof HTMLInputElement) {
             form.addEventListener("submit", (event) => {
@@ -344,5 +344,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    initAbbeyChat();
+    initSsenksTechChat();
 });

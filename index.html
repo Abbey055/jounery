@@ -544,27 +544,29 @@
 
     <!-- Paste the URL from a Zapier Chatbots iframe embed src into data-zapier-chat-url. -->
     <div class="ai-chat-widget" data-ai-chat data-zapier-chat-url="">
-        <button class="ai-chat-toggle" type="button" aria-label="Open Abbey AI Virtual Assistant"
-            aria-expanded="false" aria-controls="abbey-ai-chat-panel" title="Abbey AI Virtual Assistant">
+        <button class="ai-chat-toggle" type="button" aria-label="Open SsenksTech Virtual Assistant"
+            aria-expanded="false" aria-controls="ssenkstech-chat-panel" title="SsenksTech Virtual Assistant">
             <span class="ai-chat-status-dot" aria-hidden="true"></span>
-            <img src="assets/images/abbey-ai-chat-icon.svg" alt="" aria-hidden="true">
+            <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
         </button>
 
-        <section class="ai-chat-panel" id="abbey-ai-chat-panel" aria-label="Abbey AI Virtual Assistant" hidden>
+        <section class="ai-chat-panel" id="ssenkstech-chat-panel" aria-label="SsenksTech Virtual Assistant" hidden>
             <header class="ai-chat-header">
                 <div class="ai-chat-title">
-                    <img src="assets/images/abbey-ai-chat-icon.svg" alt="" aria-hidden="true">
+                    <span class="ai-chat-title-icon" aria-hidden="true">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </span>
                     <div>
-                        <p>Abbey AI</p>
+                        <p>SsenksTech</p>
                         <span>Virtual Assistant</span>
                     </div>
                 </div>
-                <button class="ai-chat-close" type="button" aria-label="Close Abbey AI chat">
+                <button class="ai-chat-close" type="button" aria-label="Close SsenksTech chat">
                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
             </header>
 
-            <iframe class="ai-chat-frame" data-ai-chat-frame title="Abbey AI Virtual Assistant" loading="lazy"
+            <iframe class="ai-chat-frame" data-ai-chat-frame title="SsenksTech Virtual Assistant" loading="lazy"
                 hidden></iframe>
 
             <div class="ai-chat-local" data-ai-chat-local>
@@ -578,8 +580,8 @@
                 </div>
 
                 <form class="ai-chat-form" data-ai-chat-form>
-                    <label class="sr-only" for="abbey-ai-chat-input">Ask Abbey AI a question</label>
-                    <input id="abbey-ai-chat-input" data-ai-chat-input type="text" autocomplete="off"
+                    <label class="sr-only" for="ssenkstech-chat-input">Ask SsenksTech a question</label>
+                    <input id="ssenkstech-chat-input" data-ai-chat-input type="text" autocomplete="off"
                         placeholder="Ask about Abbey's work">
                     <button type="submit" aria-label="Send message">
                         <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
