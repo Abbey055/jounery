@@ -1,4 +1,4 @@
-const DEFAULT_MODEL = "gemini-3.5-flash";
+const DEFAULT_MODEL = "gemini-2.5-flash";
 const MAX_MESSAGE_LENGTH = 1200;
 const MAX_HISTORY_ITEMS = 8;
 
@@ -108,7 +108,8 @@ module.exports = async (request, response) => {
     const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
 
     if (!apiKey) {
-        sendJson(response, 500, { error: "Missing GEMINI_API_KEY environment variable" });
+        console.error("Missing GEMINI_API_KEY environment variable");
+        sendJson(response, 500, { error: "Assistant is temporarily unavailable" });
         return;
     }
 
@@ -151,8 +152,9 @@ module.exports = async (request, response) => {
         const data = await geminiResponse.json();
 
         if (!geminiResponse.ok) {
+            console.error("Gemini request failed", data.error || data);
             sendJson(response, geminiResponse.status, {
-                error: data.error && data.error.message ? data.error.message : "Gemini request failed"
+                error: "Assistant is temporarily unavailable"
             });
             return;
         }
@@ -160,14 +162,16 @@ module.exports = async (request, response) => {
         const reply = extractGeminiText(data);
 
         if (!reply) {
-            sendJson(response, 502, { error: "Gemini returned an empty response" });
+            console.error("Gemini returned an empty response");
+            sendJson(response, 502, { error: "Assistant is temporarily unavailable" });
             return;
         }
 
         sendJson(response, 200, { reply });
     } catch (error) {
+        console.error(error);
         sendJson(response, 500, {
-            error: error instanceof Error ? error.message : "Unexpected server error"
+            error: "Assistant is temporarily unavailable"
         });
     }
 };

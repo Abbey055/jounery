@@ -352,10 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 conversation.push({ role: "assistant", text: reply });
             } catch (error) {
-                const fallbackReply = buildReply(value);
-                const reply = canUseGemini()
-                    ? `${fallbackReply}\n\nI could not reach Gemini just now, so I used the built-in portfolio assistant.`
-                    : fallbackReply;
+                const reply = buildReply(value);
 
                 if (thinkingMessage) {
                     thinkingMessage.textContent = reply;
