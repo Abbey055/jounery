@@ -1,0 +1,13 @@
+Vercel CLI 50.13.2
+Loading scopes…
+Searching for existing projects…
+> No framework detected. Default Project Settings:
+
+- Build Command: `npm run vercel-build` or `npm run build`
+- Development Command: None
+- Install Command: `yarn install`, `pnpm install`, `npm install`, or `bun install`
+- Output Directory: `public` if it exists, or `.`
+Linked to musumbaabeljr055s-projects/journey (created .vercel and added it to .gitignore)
+> Connecting GitHub repository: https://github.com/MusumbaAbeljr055/jounery
+Error: Failed to connect MusumbaAbeljr055/jounery to project. Make sure there aren't any typos and that you have access to the repository if it's private.
+> Ready! Available at http://127.0.0.1:3000

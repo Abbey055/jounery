@@ -141,15 +141,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const form = chatWidget.querySelector("[data-ai-chat-form]");
         const input = chatWidget.querySelector("[data-ai-chat-input]");
         const suggestionButtons = chatWidget.querySelectorAll("[data-ai-suggestion]");
+        const geminiEndpoint = (chatWidget.getAttribute("data-gemini-endpoint") || "/api/gemini").trim();
         const zapierChatUrl = (chatWidget.getAttribute("data-zapier-chat-url") || "").trim();
         let hasLoadedEmbed = false;
         let awaitingProjectDetails = false;
+        let isSending = false;
+        const conversation = [];
 
         if (!toggle || !panel) {
             return;
         }
 
-        const contactLine = "Email: ssenkubugeabbey885@gmail.com\nPhone: +256 782 889754";
+        const contactLine = "Email: ssenkubugeabbey055@gmail.com\nPhone: +256 705 149 399";
         const closingLine = "Feel free to contact Ssenkubuge Abbey for consultations, partnerships, software development services, and digital innovation projects.";
 
         const services = [
@@ -205,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const addMessage = (text, sender = "bot") => {
             if (!messages) {
-                return;
+                return null;
             }
 
             const message = document.createElement("p");
@@ -213,6 +216,23 @@ document.addEventListener("DOMContentLoaded", () => {
             message.textContent = text;
             messages.appendChild(message);
             messages.scrollTop = messages.scrollHeight;
+            return message;
+        };
+
+        const setInputState = (disabled) => {
+            isSending = disabled;
+
+            if (input instanceof HTMLInputElement) {
+                input.disabled = disabled;
+            }
+
+            if (form instanceof HTMLFormElement) {
+                const sendButton = form.querySelector("button");
+
+                if (sendButton instanceof HTMLButtonElement) {
+                    sendButton.disabled = disabled;
+                }
+            }
         };
 
         const hasAny = (text, words) => words.some((word) => text.includes(word));
@@ -287,6 +307,72 @@ document.addEventListener("DOMContentLoaded", () => {
             return `I can help with professional information about Ssenkubuge Abbey's services, skills, projects, education, and consultation requests. For project work, please share your full name, email address, phone number, and project description.\n\n${closingLine}`;
         };
 
+        const canUseGemini = () => Boolean(geminiEndpoint) && window.location.protocol !== "file:";
+
+        const askGemini = async (message) => {
+            if (!canUseGemini()) {
+                throw new Error("Gemini endpoint is unavailable on this page.");
+            }
+
+            const response = await fetch(geminiEndpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message,
+                    history: conversation.slice(-8)
+                })
+            });
+
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok || !data.reply) {
+                throw new Error(data.error || "Gemini request failed.");
+            }
+
+            return data.reply;
+        };
+
+        const answerMessage = async (value) => {
+            addMessage(value, "user");
+            conversation.push({ role: "user", text: value });
+
+            const thinkingMessage = addMessage("Thinking...", "bot");
+            setInputState(true);
+
+            try {
+                const reply = await askGemini(value);
+
+                if (thinkingMessage) {
+                    thinkingMessage.textContent = reply;
+                } else {
+                    addMessage(reply);
+                }
+
+                conversation.push({ role: "assistant", text: reply });
+            } catch (error) {
+                const fallbackReply = buildReply(value);
+                const reply = canUseGemini()
+                    ? `${fallbackReply}\n\nI could not reach Gemini just now, so I used the built-in portfolio assistant.`
+                    : fallbackReply;
+
+                if (thinkingMessage) {
+                    thinkingMessage.textContent = reply;
+                } else {
+                    addMessage(reply);
+                }
+
+                conversation.push({ role: "assistant", text: reply });
+            } finally {
+                setInputState(false);
+
+                if (input instanceof HTMLInputElement) {
+                    input.focus();
+                }
+            }
+        };
+
         toggle.addEventListener("click", () => {
             if (panel.hidden) {
                 openChat();
@@ -319,13 +405,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.preventDefault();
                 const value = input.value.trim();
 
-                if (!value) {
+                if (!value || isSending) {
                     return;
                 }
 
                 input.value = "";
-                addMessage(value, "user");
-                window.setTimeout(() => addMessage(buildReply(value)), 180);
+                answerMessage(value);
             });
         }
 
