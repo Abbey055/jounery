@@ -4,22 +4,22 @@ import React from 'react';
 export default function EducationWork() {
   const education = [
     {
-      year: '2022 - 2026',
+      year: '2023 - 2026',
       school: 'Mbarara University of Science and Technology (MUST)',
       degree: 'Bachelor of Information Technology',
       description: 'Focused on software development, database systems, networking, and IT project management.'
     },
     {
-      year: '2018 - 2021',
-      school: 'St. Mary College Lugazi',
+      year: '2020 - 2022',
+      school: 'SLAB',
       degree: 'Uganda Advanced Certificate of Education (UACE)',
-      description: 'Completed A-level studies with a focus on sciences and mathematics.'
+      description: 'Completed A-level studies.'
     },
     {
-      year: '2014 - 2017',
-      school: 'St. Mary College Lugazi',
+      year: '2016 - 2019',
+      school: 'SLAB',
       degree: 'Uganda Certificate of Education (UCE)',
-      description: 'Completed O-level studies with a strong foundation in sciences and humanities.'
+      description: 'Completed O-level studies.'
     }
   ];
 
