@@ -1,0 +1,4495 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Bootcamp</title>
+    <link rel="icon" type="image/png" href="opp3.jpg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+
+    <style>
+        :root {
+            --color-primary: #2d89ef;
+            --color-primary-dark: #2b579a;
+            --color-secondary: #00bc8c;
+            --color-accent: #ff6b6b;
+            --color-dark: #333;
+            --color-light: #f8f9fa;
+            --color-border: #dee2e6;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+            --card-bg: #fff;
+            --text-color: #333;
+            --muted-text: #666;
+            --feature-bg: #fff;
+            --testimonial-bg: #fff;
+        }
+
+        [data-theme="dark"] {
+            --color-dark: #f8f9fa;
+            --color-light: #121212;
+            --color-border: #444;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            --card-bg: #222;
+            --text-color: #f0f0f0;
+            --muted-text: #aaa;
+            --feature-bg: #222;
+            --testimonial-bg: #222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--color-light);
+            transition: var(--transition);
+            font-size: 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        h1 {
+            font-size: clamp(1.4rem, 4vw, 1.6rem);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            background-color: var(--color-secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            cursor: pointer;
+            transition: var(--transition);
+            min-height: 44px;
+        }
+
+        button:hover {
+            background-color: #00a379;
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #hero {
+            text-align: center;
+            padding: clamp(2rem, 5vw, 3rem) 1rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: white;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+
+        #hero h2 {
+            font-size: clamp(1.8rem, 6vw, 2.2rem);
+            margin-bottom: 0.8rem;
+        }
+
+        #hero p {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            max-width: 90%;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            min-height: 44px;
+            line-height: 1.4;
+        }
+
+        .primary {
+            background-color: var(--color-secondary);
+            color: white;
+        }
+
+        .primary:hover {
+            background-color: #00a379;
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .secondary:hover {
+            background-color: white;
+            color: var(--color-primary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            max-width: 600px;
+            height: 18px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 0.8rem auto;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--color-secondary);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .curriculum-section {
+            padding: 1.5rem 0;
+        }
+
+        .curriculum-section h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+            font-size: clamp(1.8rem, 5vw, 2rem);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .module-header h3 {
+            color: var(--color-primary);
+            font-size: clamp(1.5rem, 4vw, 1.7rem);
+        }
+
+        .module-toggle {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            min-height: 44px;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .lesson-image {
+            height: 140px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .lesson-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lesson-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lesson-status {
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+            color: var(--color-secondary);
+        }
+
+        .lesson-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.4rem;
+            font-size: clamp(1.2rem, 3vw, 1.3rem);
+        }
+
+        .lesson-card p {
+            color: var(--muted-text);
+            margin-bottom: 0.8rem;
+            flex-grow: 1;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--muted-text);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .completed {
+            border-left: 5px solid var(--color-secondary);
+        }
+
+        #features {
+            background-color: var(--color-light);
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: var(--border-radius);
+        }
+
+        #features h2 {
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 5vw, 2rem);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature {
+            background: var(--feature-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .feature p {
+            color: var(--muted-text);
+        }
+
+        #testimonials {
+            padding: 2rem 0;
+        }
+
+        #testimonials h2 {
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 5vw, 2rem);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial {
+            background: var(--testimonial-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial:before {
+            content: "\"";
+            font-size: 4rem;
+            color: var(--color-secondary);
+            opacity: 0.2;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 0.8rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            color: var(--text-color);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        #lesson-view {
+            display: none;
+            padding: 1.5rem 0;
+        }
+
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .lesson-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-content {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .code-editor {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin: 1.2rem 0;
+        }
+
+        .editor-header {
+            background: #1e1e1e;
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .editor-actions button {
+            background: #0078d4;
+            padding: 0.3rem 0.6rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            min-height: 36px;
+        }
+
+        .code-area {
+            width: 100%;
+            min-height: 150px;
+            max-height: 50vh;
+            background: #1e1e1e;
+            color: #f8f8f2;
+            border: none;
+            padding: 0.8rem;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        .output-area {
+            background: #1e1e1e;
+            padding: 0.8rem;
+            border-top: 1px solid #444;
+            min-height: 80px;
+            max-height: 30vh;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            color: #f8f8f2;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            overflow-y: auto;
+        }
+
+        .challenge {
+            background: #f0f8ff;
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            margin: 1.2rem 0;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        [data-theme="dark"] .challenge {
+            background: #1a2a3a;
+        }
+
+        .completion-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-border);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        #installToast {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: var(--card-bg);
+            padding: 0.8rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 1000;
+            max-width: 90%;
+            width: 300px;
+            color: var(--text-color);
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .toast-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        #pythonNote {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            max-width: 90%;
+            width: 320px;
+            z-index: 1000;
+            font-family: "Segoe UI", Roboto, sans-serif;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: var(--text-color);
+        }
+
+        #pythonNote:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+        }
+
+        .note-header h3 {
+            font-size: 1.1rem;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .note-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: transform 0.2s ease;
+        }
+
+        .note-toggle:hover {
+            transform: scale(1.2);
+            color: var(--color-secondary);
+        }
+
+        /* Slide toggle effect */
+        .note-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .note-content.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .note-content h4 {
+            margin-top: 0.8rem;
+            margin-bottom: 0.4rem;
+            color: var(--color-primary);
+            font-size: 1rem;
+        }
+
+        .note-content ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 0.3rem 0;
+            line-height: 1.6;
+        }
+
+        .note-content li {
+            margin-bottom: 0.4rem;
+        }
+
+        .note-content a {
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .note-content a:hover {
+            text-decoration: underline;
+        }
+
+        .note-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            padding: 0 10px;
+        }
+
+        .note-content.active {
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        #downloadModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            max-width: 90%;
+            width: 500px;
+            box-shadow: var(--shadow);
+            color: var(--text-color);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .download-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .download-option {
+            padding: 0.8rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+
+        .download-option:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .download-option:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .download-option h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.4rem;
+            font-size: clamp(1.1rem, 3vw, 1.2rem);
+        }
+
+        .download-progress {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 0.8rem;
+            overflow: hidden;
+            display: none;
+        }
+
+        .download-progress-bar {
+            height: 100%;
+            background-color: var(--color-secondary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        #about {
+            padding: 2rem 0;
+            background-color: var(--color-light);
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+        }
+
+        #about h2 {
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 5vw, 2rem);
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            max-width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--color-primary);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 0.8rem;
+        }
+
+        .skill {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        footer {
+            background-color: var(--color-dark);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        footer a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Code examples styling */
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+        }
+
+        .code-comment {
+            color: #6a9955;
+        }
+
+        .code-keyword {
+            color: #c586c0;
+        }
+
+        .code-function {
+            color: #dcdcaa;
+        }
+
+        .code-string {
+            color: #ce9178;
+        }
+
+        .code-number {
+            color: #b5cea8;
+        }
+
+        .info-box {
+            background: #e8f4fc;
+            border-left: 4px solid var(--color-primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        [data-theme="dark"] .info-box {
+            background: #1a2a3a;
+            color: #f0f0f0;
+        }
+
+        /* Quiz Styles */
+        #quiz-view {
+            display: none;
+            padding: 1.5rem 0;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .quiz-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-content {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            padding: 0.8rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+
+        .quiz-option:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-border);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        #quiz-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-color);
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .score-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-feedback {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .feedback-item {
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border-radius: var(--border-radius);
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--text-color);
+        }
+
+        .feedback-correct {
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        .feedback-incorrect {
+            border-left: 4px solid var(--color-accent);
+        }
+
+        /* Visitor View Styles */
+        #visitor-view {
+            display: none;
+            padding: 1.5rem 0;
+        }
+
+        .visitor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .visitor-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        .visitor-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        #visitor-data {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+        }
+
+        /* Search Functionality */
+        .search-container {
+            position: relative;
+            margin: 0 10px;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            width: 250px;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .search-result-item {
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-result-item:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* AI Chat Styles */
+        #ai-chat {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 1.5rem 0;
+            color: var(--text-color);
+        }
+
+        #chat-messages {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f0f0f0;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--color-border);
+        }
+
+        [data-theme="dark"] #chat-messages {
+            background: #965cd9;
+        }
+
+        .chat-message {
+            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            border-radius: var(--border-radius);
+            max-width: 80%;
+        }
+
+        .chat-message.user {
+            background-color: var(--color-primary);
+            color: rgb(237, 239, 239);
+            margin-left: auto;
+        }
+
+        .chat-message.ai {
+            background-color: var(--color-secondary);
+            color: rgb(1, 9, 4);
+            margin-right: auto;
+        }
+
+        #chat-input {
+            width: 100%;
+            min-height: 60px;
+            padding: 0.8rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            background: var(--card-bg);
+            color: var(--text-color);
+            margin-bottom: 0.8rem;
+            resize: vertical;
+        }
+
+        #send-chat {
+            width: 100%;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .logo-img {
+                width: 32px;
+                height: 32px;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            #hero {
+                padding: 1.5rem 0.5rem;
+            }
+
+            #hero h2 {
+                font-size: 1.5rem;
+            }
+
+            #hero p {
+                font-size: 0.9rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .lesson-grid,
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .lesson-card {
+                min-width: 0;
+            }
+
+            .lesson-image {
+                height: 120px;
+            }
+
+            .code-editor {
+                margin: 0.8rem 0;
+            }
+
+            .code-area {
+                min-height: 120px;
+                font-size: 0.8rem;
+            }
+
+            .output-area {
+                min-height: 60px;
+                font-size: 0.8rem;
+            }
+
+            .lesson-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .lesson-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .lesson-nav button {
+                width: 100%;
+                text-align: center;
+            }
+
+            #pythonNote,
+            #installToast {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                width: auto;
+                max-width: 100%;
+                font-size: 0.85rem;
+            }
+
+            .modal-content {
+                padding: 1rem;
+                width: 95%;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .quiz-actions {
+                flex-direction: column;
+            }
+
+            .score-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 1.5rem;
+            }
+
+            .visitor-stats {
+                grid-template-columns: 1fr;
+            }
+
+            /* New responsive styles */
+            .search-container {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .header-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            #hero h2 {
+                font-size: 1.8rem;
+            }
+
+            #hero p {
+                font-size: 1rem;
+            }
+
+            .hero-actions {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .lesson-grid,
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 1rem;
+            }
+
+            .lesson-image {
+                height: 130px;
+            }
+
+            .code-area {
+                min-height: 140px;
+                font-size: 0.9rem;
+            }
+
+            .output-area {
+                min-height: 70px;
+                font-size: 0.9rem;
+            }
+
+            .lesson-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            #pythonNote,
+            #installToast {
+                max-width: 320px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .lesson-grid,
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            #pythonNote {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="opp3.jpg" alt="Musumba Space Logo" class="logo-img">
+                <h1>Python</h1>
+            </div>
+            <div class="header-controls">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search lessons...">
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+                <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+                <button id="visitorBtn" aria-label="View Visitors"></button>
+                <button id="butInstall" aria-label="Install App" style="display: none;">Install App</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="dashboard-view">
+            <section id="hero">
+                <h2>Karibu! Welcome to Your Python Journey</h2>
+                <p>Learn in depth Python programming, designed for <strong>offline use</strong> across Uganda. Build
+                    real skills, step by step.</p>
+                <div class="hero-actions">
+                    <a href="#curriculum" class="button primary">Start Learning</a>
+                    <a href="#" id="downloadAll" class="button secondary">Download Full Course (PDF)</a>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overallProgressBar" style="width: 0%;"></div>
+                </div>
+                <p id="overallProgressText">Overall Progress: <strong>0%</strong></p>
+            </section>
+
+            <section id="curriculum" class="curriculum-section">
+                <h2>Coverage</h2>
+
+                <div class="module-header">
+                    <h3>Python Fundamentals</h3>
+                    <button class="module-toggle" data-module="fundamentals">Hide</button>
+                </div>
+                <div id="fundamentals-module" class="lesson-grid"></div>
+
+                <div class="module-header">
+                    <h3>Control Statements</h3>
+                    <button class="module-toggle" data-module="control">Hide</button>
+                </div>
+                <div id="control-module" class="lesson-grid"></div>
+
+                <div class="module-header">
+                    <h3>Python Collections</h3>
+                    <button class="module-toggle" data-module="collections">Hide</button>
+                </div>
+                <div id="collections-module" class="lesson-grid"></div>
+
+                <div class="module-header">
+                    <h3>Functions in Python</h3>
+                    <button class="module-toggle" data-module="functions">Hide</button>
+                </div>
+                <div id="functions-module" class="lesson-grid"></div>
+
+                <div class="module-header">
+                    <h3>Object Oriented Programming in Python</h3>
+                    <button class="module-toggle" data-module="oop">Hide</button>
+                </div>
+                <div id="oop-module" class="lesson-grid"></div>
+            </section>
+
+            <section id="features">
+                <h2>Why Learn With Us?</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-wifi-slash"></i>
+                        <h3>Learn Offline</h3>
+                        <p>Download lessons and code anywhere, even without internet connection</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Hands-On Practice</h3>
+                        <p>Interactive coding exercises built directly into each lesson</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Ugandan Context</h3>
+                        <p>Examples and projects relevant to the Ugandan market and challenges</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Gamified Learning</h3>
+                        <p>Earn points, badges, and compete with others on the leaderboard</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <img src="abbey.jpg" alt="Ssenkubuge Abbey Musumba" class="profile-img">
+                    <div>
+                        <h3>Ssenkubuge Abbey Musumba</h3>
+                        <p>IT Student at MUST (Mbarara University of Science and Technology)</p>
+                        <p>Software Developer, Web Developer, Software Installer</p>
+                        <p>Ready to work and passionate about technology education in Uganda</p>
+                    </div>
+                    <div class="skills">
+                        <span class="skill">Python</span>
+                        <span class="skill">Java</span>
+                        <span class="skill">HTML/CSS</span>
+                        <span class="skill">Web Development</span>
+                        <span class="skill">Software Installation</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="lesson-view">
+            <div class="lesson-header">
+                <h2 id="lesson-title">Lesson Title</h2>
+                <div class="lesson-nav">
+                    <button id="prev-lesson">Previous</button>
+                    <button id="next-lesson">Next</button>
+                    <button id="back-to-dashboard">Back to Dashboard</button>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div id="lesson-content-html"></div>
+
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Python Code Editor</span>
+                        <div class="editor-actions">
+                            <button id="run-code">Run</button>
+                            <button id="reset-code">Reset</button>
+                        </div>
+                    </div>
+                    <textarea class="code-area" id="code-input" placeholder="Write your Python code here..."># Write your code here
+print("Hello, Python!")</textarea>
+                    <div class="output-area" id="code-output">Output will appear here...</div>
+                </div>
+
+                <!-- AI Chat Integration -->
+                <div id="ai-chat">
+                    <h3>Ask AI</h3>
+                    <div id="chat-messages"></div>
+                    <textarea id="chat-input" placeholder="Ask about the code or lesson..."></textarea>
+                    <button id="send-chat">Send</button>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Powered by google</p>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p id="challenge-text">Complete the code to solve the challenge.</p>
+                    <button id="check-challenge">Check Solution</button>
+                </div>
+
+                <div class="completion-section">
+                    <p>Mark this lesson as completed when you're done:</p>
+                    <button id="mark-complete">Mark as Complete</button>
+                    <button id="start-quiz">Take Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz View -->
+        <div id="quiz-view">
+            <div class="quiz-header">
+                <h2 id="quiz-title">Quiz: Lesson Title</h2>
+                <div class="quiz-nav">
+                    <button id="back-from-quiz">Back to Lesson</button>
+                </div>
+            </div>
+
+            <div class="quiz-content" id="quiz-questions-container">
+                <div class="quiz-progress">
+                    <span id="quiz-progress-text">Question 1 of 15</span>
+                    <span id="quiz-timer">Time: 00:00</span>
+                </div>
+
+                <div class="quiz-question">
+                    <h3 id="quiz-question-text">Question text goes here</h3>
+                </div>
+
+                <div class="quiz-options" id="quiz-options-container">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+
+                <div class="quiz-actions">
+                    <button id="prev-question" disabled>Previous</button>
+                    <button id="next-question">Next</button>
+                    <button id="submit-quiz" style="display: none;">Submit Quiz</button>
+                </div>
+            </div>
+
+            <div class="quiz-content" id="quiz-results" style="display: none;">
+                <h3>Quiz Results</h3>
+                <div class="score-circle">
+                    <span id="quiz-score">0</span>
+                    <span>/100</span>
+                </div>
+                <div class="score-text" id="score-message">Keep practicing!</div>
+                <button id="review-quiz">Review Answers</button>
+                <button id="retake-quiz">Retake Quiz</button>
+                <button id="back-to-lesson">Back to Lesson</button>
+
+                <div class="quiz-feedback" id="quiz-feedback" style="display: none;">
+                    <!-- Feedback will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Visitor View -->
+        <div id="visitor-view">
+            <div class="visitor-header">
+                <h2>Visitor Dashboard (For Study)</h2>
+                <div>
+                    <button id="refresh-visitors">Refresh</button>
+                    <button id="back-to-dashboard-from-visitors">Back to Dashboard</button>
+                </div>
+            </div>
+
+            <div class="visitor-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="unique-visitors">0</div>
+                    <div class="stat-label">Unique Visitors</div>
+                </div>
+            </div>
+
+            <div class="visitor-actions">
+                <h3>Visitor Data</h3>
+            </div>
+            <div id="visitor-data">
+                <pre id="visitor-json">Loading visitor data...</pre>
+            </div>
+        </div>
+    </main>
+
+    <div id="installToast">
+        <div class="toast-content">
+            <i class="fas fa-download fa-2x"></i>
+            <p>Install this app for a better experience and offline access</p>
+        </div>
+        <div class="toast-actions">
+            <button id="toastInstall">Install</button>
+            <button id="toastDismiss">Dismiss</button>
+        </div>
+    </div>
+
+    <div id="pythonNote">
+        <div class="note-header">
+            <h3>Python Editors & Installation</h3>
+            <button class="note-toggle" id="noteToggle">▼</button>
+        </div>
+        <div class="note-content" id="noteContent">
+            <p>Python editors make coding easier with features like syntax highlighting, debugging, and code completion.
+            </p>
+            <h4>Install Python</h4>
+            <p>To run Python locally, download and install it from the official website:</p>
+            <ul>
+                <li>Visit <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></li>
+                <li>Choose the latest version (e.g., Python 3.13)</li>
+                <li>Windows: Run the installer, check "Add Python to PATH"</li>
+                <li>macOS/Linux: use <code>brew install python</code> or <code>sudo apt-get install python3</code></li>
+            </ul>
+            <h4>Recommended Editors</h4>
+            <ul>
+                <li><a href="https://code.visualstudio.com/download" target="_blank">Visual Studio Code</a> –
+                    lightweight, extensible, with Python extension support.</li>
+                <li><a href="https://www.jetbrains.com/pycharm/download/" target="_blank">PyCharm</a> – powerful IDE
+                    with advanced debugging and testing tools and i recommend you for it.</li>
+                <li><a href="https://www.python.org/downloads/" target="_blank">IDLE</a> – simple editor included with
+                    Python, great for beginners.</li>
+                <li><a href="https://thonny.org/" target="_blank">Thonny</a> – beginner-friendly with a simple
+                    interface.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="downloadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Download Course Materials</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <p>Select what you would like to download for offline use:</p>
+            <div class="download-options">
+                <div class="download-option" data-type="current-lesson">
+                    <h3>Current Lesson Only (PDF)</h3>
+                    <p>Download just this lesson as a PDF for offline access</p>
+                </div>
+                <div class="download-option" data-type="module-lessons">
+                    <h3>Current Module (PDF)</h3>
+                    <p>Download all lessons in this module as a PDF</p>
+                </div>
+                <div class="download-option" data-type="all-lesson">
+                    <h3>All Lessons (PDF)</h3>
+                    <p>Download all course materials as a PDF file</p>
+                </div>
+                <div class="download-option" data-type="code-examples">
+                    <h3>Code Examples Only (PDF)</h3>
+                    <p>Download just the code examples from all lessons as PDF</p>
+                </div>
+            </div>
+            <div class="download-progress" id="downloadProgress">
+                <div class="download-progress-bar" id="downloadProgressBar"></div>
+            </div>
+            <div id="downloadStatus"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 <a href="https://musumba.space">Musumba.space</a> | Built with ♥ for Ugandan developers.</p>
+            <p>Found a bug? <a href="mailto:ssenkubugeabbey055@gmail.com">Email the instructor</a>.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Lesson data
+        const fundamentalsLessons = [
+            {
+                id: "1-intro",
+                title: "Lesson 1: Introduction to Python",
+                description: "What is Python? Why is it powerful? Set up your environment and write your first program.",
+                estimatedTime: "30 mins",
+                challenges: 2,
+                image: "a.jpg",
+                content: `
+                    <h3>What is Python?</h3>
+                    <p>Python is a high-level, interpreted programming language known for its clear syntax and readability.</p>
+                    <p>Created by Guido van Rossum and first released in 1991, Python has become one of the most popular programming languages in the world.</p>
+                    
+                    <h3>Why Learn Python?</h3>
+                    <ul>
+                        <li>Easy to learn with clear, readable syntax</li>
+                        <li>Versatile - used in web development, data science, AI, and more</li>
+                        <li>Large community and extensive libraries</li>
+                        <li>Great for beginners and professionals alike</li>
+                    </ul>
+                    
+                    <h3>Your First Python Program</h3>
+                    <p>Traditionally, the first program you write in any language is "Hello, World!". In Python, it's simple:</p>
+                `,
+                defaultCode: `# This is a comment
+print("Hello, World!")`,
+                challenge: "Modify the code to print your name instead of 'World'",
+                module: "fundamentals"
+            },
+            {
+                id: "2-variables",
+                title: "Lesson 2: Variables & Data Types",
+                description: "Learn to store information using variables and work with different types of data like text and numbers.",
+                estimatedTime: "45 mins",
+                challenges: 3,
+                image: "variables.webp",
+                content: `
+                    <h3>What are Variables?</h3>
+                    <p>Variables are like containers that store data values. Unlike other programming languages, Python has no command for declaring a variable.</p>
+                    <p>A variable is created the moment you first assign a value to it.</p>
+                    
+                    <h3>Data Types in Python</h3>
+                    <p>Python has various data types. The most common are:</p>
+                    <ul>
+                        <li><strong>Text Type:</strong> str (string)</li>
+                        <li><strong>Numeric Types:</strong> int, float, complex</li>
+                        <li><strong>Sequence Types:</strong> list, tuple, range</li>
+                        <li><strong>Mapping Type:</strong> dict (dictionary)</li>
+                        <li><strong>Boolean Type:</strong> bool (True or False)</li>
+                    </ul>
+                `,
+                defaultCode: `# Variables example
+name = "John"      # string
+age = 25           # integer
+height = 5.9       # float
+is_student = True  # boolean
+
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"Height: {height}")
+print(f"Is student: {is_student}")`,
+                challenge: "Create variables for a product name, price, and in_stock status, then print them",
+                module: "fundamentals"
+            }
+        ];
+
+        const controlLessons = [
+            {
+                id: "3-control-statements",
+                title: "Lesson 3: Control Statements",
+                description: "Learn how to control the flow of your programs with conditionals and loops.",
+                estimatedTime: "60 mins",
+                challenges: 4,
+                image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                content: `
+                    <h3>What are Control Statements?</h3>
+                    <p>Control statements allow you to control the flow of your program's execution based on certain conditions or by repeating certain blocks of code.</p>
+                    
+                    <h3>Conditional Statements</h3>
+                    <p>Conditional statements allow you to execute different blocks of code based on different conditions:</p>
+                    <ul>
+                        <li><strong>if</strong> - executes a block of code if a condition is true</li>
+                        <li><strong>elif</strong> - checks another condition if previous conditions were false</li>
+                        <li><strong>else</strong> - executes a block if all previous conditions are false</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <p><strong>Note:</strong> Python uses indentation (whitespace at the beginning of a line) to define scope in code. Other programming languages often use curly-brackets for this purpose.</p>
+                    </div>
+                    
+                    <h3>Loop Statements</h3>
+                    <p>Loops allow you to execute a block of code multiple times:</p>
+                    <ul>
+                        <li><strong>for</strong> - iterates over a sequence (list, tuple, dictionary, set, or string)</li>
+                        <li><strong>while</strong> - executes as long as a condition is true</li>
+                    </ul>
+                    
+                    <h3>Control Statements in Action</h3>
+                    <p>Here are some examples of control statements:</p>
+                `,
+                defaultCode: `# Conditional statements example
+age = 18
+
+if age >= 18:
+    print("You are an adult")
+elif age >= 13:
+    print("You are a teenager")
+else:
+    print("You are a child")
+
+# For loop example
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(f"I like {fruit}")
+
+# While loop example
+count = 5
+while count > 0:
+    print(count)
+    count -= 1
+print("Blastoff!")`,
+                challenge: "Write a program that prints numbers 1 to 10, but for multiples of 3 print 'Fizz' instead of the number, and for multiples of 5 print 'Buzz'",
+                module: "control"
+            },
+            {
+                id: "4-advanced-control",
+                title: "Lesson 4: Advanced Control Flow",
+                description: "Learn about break, continue, and pass statements for more control over your loops.",
+                estimatedTime: "45 mins",
+                challenges: 3,
+                image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                content: `
+                    <h3>Advanced Loop Control</h3>
+                    <p>Python provides additional statements to give you more control over your loops:</p>
+                    
+                    <h4>Break Statement</h4>
+                    <p>The <code>break</code> statement stops the loop immediately, even if the loop condition is still true.</p>
+                    
+                    <h4>Continue Statement</h4>
+                    <p>The <code>continue</code> statement skips the rest of the current iteration and moves to the next iteration of the loop.</p>
+                    
+                    <h4>Pass Statement</h4>
+                    <p>The <code>pass</code> statement is a null operation - nothing happens when it executes. It's useful as a placeholder when a statement is required syntactically but you don't want any code to execute.</p>
+                    
+                    <h3>Loop Control in Action</h3>
+                    <p>Here are examples of these control statements:</p>
+                `,
+                defaultCode: `# Break statement example
+print("Break example:")
+for number in range(1, 10):
+    if number == 5:
+        break  # Exit the loop when number is 5
+    print(number)
+
+# Continue statement example
+print("\\nContinue example:")
+for number in range(1, 10):
+    if number % 2 == 0:
+        continue  # Skip even numbers
+    print(number)
+
+# Pass statement example
+print("\\nPass example:")
+for number in range(1, 5):
+    if number == 3:
+        pass  # Do nothing, just a placeholder
+    else:
+        print(number)
+
+# Nested loops with control statements
+print("\\nNested loops example:")
+for i in range(1, 4):
+    for j in range(1, 4):
+        if i == j:
+            print(f"i and j are both {i}")
+            break  # Break only affects the inner loop
+        print(f"i: {i}, j: {j}")`,
+                challenge: "Write a program that finds all prime numbers between 1 and 50 using nested loops and control statements",
+                module: "control"
+            }
+        ];
+
+        const collectionsLessons = [
+            {
+                id: "5-lists",
+                title: "Lesson 5: Working with Lists",
+                description: "Learn to store and manipulate collections of data using Python lists.",
+                estimatedTime: "45 mins",
+                challenges: 3,
+                image: "collect.png",
+                content: `
+                    <h3>What are Lists?</h3>
+                    <p>Lists are used to store multiple items in a single variable. Lists are one of 4 built-in data types in Python used to store collections of data.</p>
+                    <p>Lists are created using square brackets:</p>
+                `,
+                defaultCode: `# List examples
+fruits = ["apple", "banana", "cherry"]
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, "hello", 3.14, True]
+
+print(f"Fruits: {fruits}")
+print(f"Numbers: {numbers}")
+print(f"Mixed: {mixed}")
+
+# Access list items
+print(f"First fruit: {fruits[0]}")
+print(f"Last number: {numbers[-1]}")
+
+# Modify list
+fruits.append("orange")
+print(f"After append: {fruits}")`,
+                challenge: "Create a list of 5 numbers and calculate their sum",
+                module: "collections"
+            },
+            {
+                id: "6-tuples-dictionaries",
+                title: "Lesson 6: Tuples & Dictionaries",
+                description: "Explore immutable tuples and key-value pairs with dictionaries.",
+                estimatedTime: "50 mins",
+                challenges: 4,
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                content: `
+                    <h3>Tuples</h3>
+                    <p>Tuples are used to store multiple items in a single variable. A tuple is a collection which is ordered and unchangeable.</p>
+                    
+                    <h3>Dictionaries</h3>
+                    <p>Dictionaries are used to store data values in key:value pairs. A dictionary is a dictionary which is ordered, changeable and does not allow duplicates.</p>
+                `,
+                defaultCode: `# Tuple example
+dimensions = (1920, 1080)
+print(f"Dimensions: {dimensions}")
+print(f"Width: {dimensions[0]}")
+
+# Dictionary example
+person = {
+    "name": "Alice",
+    "age": 30,
+    "city": "Kampala"
+}
+
+print(f"Person: {person}")
+print(f"Name: {person['name']}")
+
+# Add new key-value pair
+person["occupation"] = "Developer"
+print(f"Updated person: {person}")`,
+                challenge: "Create a dictionary representing a product with name, price, and in_stock keys",
+                module: "collections"
+            }
+        ];
+
+        const functionsLessons = [
+            {
+                id: "7-functions",
+                title: "Lesson 7: Functions in Python",
+                description: "Learn how to create reusable blocks of code with functions.",
+                estimatedTime: "55 mins",
+                challenges: 4,
+                image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                content: `
+                    <h3>What are Functions?</h3>
+                    <p>A function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function. A function can return data as a result.</p>
+                    
+                    <h3>Why Use Functions?</h3>
+                    <ul>
+                        <li><strong>Code Reusability:</strong> Write once, use multiple times</li>
+                        <li><strong>Organization:</strong> Break down complex problems into smaller pieces</li>
+                        <li><strong>Readability:</strong> Make your code easier to understand</li>
+                        <li><strong>Debugging:</strong> Easier to find and fix errors</li>
+                    </ul>
+                    
+                    <h3>Defining and Calling Functions</h3>
+                    <p>In Python, a function is defined using the <code>def</code> keyword:</p>
+                    
+                    <div class="info-box">
+                        <p><strong>Note:</strong> Function names should be descriptive and follow snake_case convention (all lowercase with underscores between words).</p>
+                    </div>
+                    
+                    <h3>Function Parameters and Return Values</h3>
+                    <p>Functions can accept parameters and return values using the <code>return</code> statement:</p>
+                `,
+                defaultCode: `# Basic function without parameters
+def greet():
+    print("Hello, welcome to Python functions!")
+    
+# Call the function
+greet()
+
+# Function with parameters
+def greet_person(name):
+    print(f"Hello, {name}! Welcome to Python functions!")
+    
+greet_person("Alice")
+greet_person("Bob")
+
+# Function with return value
+def add_numbers(a, b):
+    return a + b
+
+result = add_numbers(5, 3)
+print(f"5 + 3 = {result}")
+
+# Function with default parameter
+def greet_with_time(name, time_of_day="day"):
+    print(f"Good {time_of_day}, {name}!")
+
+greet_with_time("John")  # Uses default value
+greet_with_time("Sarah", "evening")  # Overrides default value
+
+# Function that returns multiple values
+def calculate_rectangle_properties(length, width):
+    area = length * width
+    perimeter = 2 * (length + width)
+    return area, perimeter
+
+area, perimeter = calculate_rectangle_properties(5, 3)
+print(f"Area: {area}, Perimeter: {perimeter}")`,
+                challenge: "Create a function called is_even that takes a number as parameter and returns True if the number is even, False otherwise",
+                module: "functions"
+            },
+            {
+                id: "8-advanced-functions",
+                title: "Lesson 8: Advanced Function Concepts",
+                description: "Explore advanced function concepts like variable scope, lambda functions, and recursion.",
+                estimatedTime: "60 mins",
+                challenges: 4,
+                image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                content: `
+                    <h3>Variable Scope in Functions</h3>
+                    <p>Variables in Python have different scopes depending on where they are declared:</p>
+                    <ul>
+                        <li><strong>Local scope:</strong> Variables declared inside a function</li>
+                        <li><strong>Global scope:</strong> Variables declared outside any function</li>
+                    </ul>
+                    
+                    <h3>Lambda Functions</h3>
+                    <p>A lambda function is a small anonymous function. It can take any number of arguments, but can only have one expression.</p>
+                    
+                    <h3>Recursion</h3>
+                    <p>Recursion is when a function calls itself. This is a powerful technique for solving problems that can be broken down into smaller, similar subproblems.</p>
+                    
+                    <div class="info-box">
+                        <p><strong>Note:</strong> When using recursion, always ensure you have a base case to prevent infinite recursion, which would cause a stack overflow.</p>
+                    </div>
+                    
+                    <h3>Advanced Function Concepts in Action</h3>
+                    <p>Here are examples of these advanced concepts:</p>
+                `,
+                defaultCode: `# Variable scope example
+global_var = "I'm global"
+
+def scope_demo():
+    local_var = "I'm local"
+    print(global_var)  # Can access global variables
+    print(local_var)   # Can access local variables
+    
+scope_demo()
+print(global_var)      # Can access global variables
+# print(local_var)     # This would cause an error - local_var is not accessible here
+
+# Using the global keyword
+counter = 0
+
+def increment_counter():
+    global counter  # Declare we want to use the global variable
+    counter += 1
+    
+increment_counter()
+increment_counter()
+print(f"Counter: {counter}")
+
+# Lambda function example
+multiply = lambda x, y: x * y
+print(f"5 * 3 = {multiply(5, 3)}")
+
+# Using lambda with built-in functions
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+print(f"Squared numbers: {squared}")
+
+# Recursion example - factorial function
+def factorial(n):
+    if n == 1:  # Base case
+        return 1
+    else:       # Recursive case
+        return n * factorial(n-1)
+
+print(f"Factorial of 5: {factorial(5)}")
+
+# Recursion example - Fibonacci sequence
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+print("Fibonacci sequence:")
+for i in range(10):
+    print(fibonacci(i), end=" ")`,
+                challenge: "Create a recursive function to calculate the sum of all numbers from 1 to n",
+                module: "functions"
+            }
+        ];
+
+        const oopLessons = [
+            {
+                id: "9-classes-objects",
+                title: "Lesson 9: Classes & Objects",
+                description: "Introduction to Object-Oriented Programming with classes and objects in Python.",
+                estimatedTime: "60 mins",
+                challenges: 4,
+                image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                content: `
+                    <h3>What is Object-Oriented Programming?</h3>
+                    <p>Object-Oriented Programming (OOP) is a programming paradigm that relies on the concept of classes and objects.</p>
+                    <p>It is used to structure a software program into simple, reusable pieces of code blueprints (usually called classes), which are used to create individual instances of objects.</p>
+                    
+                    <h3>Classes and Objects</h3>
+                    <p>A class is a blueprint for creating objects. An object is an instance of a class.</p>
+                `,
+                defaultCode: `# Class definition
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+# Creating objects
+person1 = Person("John", 25)
+person2 = Person("Sarah", 30)
+
+# Using object methods
+person1.introduce()
+person2.introduce()`,
+                challenge: "Create a Car class with brand, model, and year attributes, and a method to display the car's info",
+                module: "oop"
+            },
+            {
+                id: "10-inheritance",
+                title: "Lesson 10: Inheritance",
+                description: "Learn how classes can inherit attributes and methods from other classes.",
+                estimatedTime: "55 mins",
+                challenges: 3,
+                image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                content: `
+                    <h3>What is Inheritance?</h3>
+                    <p>Inheritance allows us to define a class that inherits all the methods and properties from another class.</p>
+                    <p>Parent class is the class being inherited from, also called base class. Child class is the class that inherits from another class, also called derived class.</p>
+                    
+                    <h3>Benefits of Inheritance</h3>
+                    <ul>
+                        <li>Code reusability</li>
+                        <li>Represents real-world relationships well</li>
+                        <li>Provides transitive inheritance</li>
+                    </ul>
+                `,
+                defaultCode: `# Parent class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    
+    def speak(self):
+        pass
+
+# Child class
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+        
+# Child class
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+# Creating objects
+dog = Dog("Buddy")
+cat = Cat("Whiskers")
+
+print(dog.name + " says: " + dog.speak())
+print(cat.name + " says: " + cat.speak())`,
+                challenge: "Create a Vehicle parent class and a Car child class that inherits from it",
+                module: "oop"
+            }
+        ];
+
+        const allLessons = [...fundamentalsLessons, ...controlLessons, ...collectionsLessons, ...functionsLessons, ...oopLessons];
+
+        // Quiz data for each lesson
+        const quizData = {
+            "1-intro": [
+                {
+                    question: "What is Python?",
+                    options: [
+                        "A snake species",
+                        "A programming language",
+                        "A type of computer",
+                        "A web browser"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which of these is the correct way to print 'Hello, World!' in Python?",
+                    options: [
+                        "echo 'Hello, World!';",
+                        "console.log('Hello, World!');",
+                        "print('Hello, World!')",
+                        "printf('Hello, World!');"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Who created Python?",
+                    options: [
+                        "Bill Gates",
+                        "Guido van Rossum",
+                        "Mark Zuckerberg",
+                        "Linus Torvalds"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "In which year was Python first released?",
+                    options: [
+                        "1989",
+                        "1991",
+                        "1995",
+                        "2000"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which of these is NOT a Python feature?",
+                    options: [
+                        "Easy to learn",
+                        "Complex syntax",
+                        "Interpreted language",
+                        "Dynamic typing"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What does the following code do: print(2 + 3)?",
+                    options: [
+                        "Prints '2 + 3'",
+                        "Prints 5",
+                        "Causes an error",
+                        "Prints 23"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which symbol is used for comments in Python?",
+                    options: [
+                        "//",
+                        "#",
+                        "/* */",
+                        " --"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What will be the output of: print(type(5))?",
+                    options: [
+                        "<class 'int'>",
+                        "<class 'float'>",
+                        "<class 'number'>",
+                        "<class 'str'>"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which of these is a valid variable name in Python?",
+                    options: [
+                        "2nd_variable",
+                        "my-variable",
+                        "_my_variable",
+                        "global"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What is the result of: print('Hello' + 'World')?",
+                    options: [
+                        "HelloWorld",
+                        "Hello World",
+                        "Hello + World",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which function is used to get user input in Python?",
+                    options: [
+                        "input()",
+                        "get()",
+                        "read()",
+                        "scan()"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What does the len() function do?",
+                    options: [
+                        "Returns the length of an object",
+                        "Converts to lowercase",
+                        "Rounds a number",
+                        "Calculates logarithm"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which of these is a floating point number?",
+                    options: [
+                        "5",
+                        "'5.0'",
+                        "5.0",
+                        "five"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What will be the output of: print(10 / 3)?",
+                    options: [
+                        "3",
+                        "3.333...",
+                        "3.0",
+                        "Error"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which operator is used for exponentiation in Python?",
+                    options: [
+                        "^",
+                        "**",
+                        "//",
+                        "%%"
+                    ],
+                    correct: 1
+                }
+            ],
+            "2-variables": [
+                {
+                    question: "Which of these is a valid variable assignment in Python?",
+                    options: [
+                        "3x = 5",
+                        "x-1 = 10",
+                        "x = 5",
+                        "var = "
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What data type is the value 3.14?",
+                    options: [
+                        "int",
+                        "str",
+                        "float",
+                        "bool"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "How do you represent boolean true in Python?",
+                    options: [
+                        "true",
+                        "True",
+                        "1",
+                        "yes"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which of these is a string?",
+                    options: [
+                        "Hello",
+                        "'Hello'",
+                        "\"Hello\"",
+                        "All of the above"
+                    ],
+                    correct: 3
+                },
+                {
+                    question: "What is the result of: 5 + 3 * 2?",
+                    options: [
+                        "16",
+                        "11",
+                        "13",
+                        "10"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "How do you convert a string to an integer in Python?",
+                    options: [
+                        "int(string)",
+                        "strToInt(string)",
+                        "convertInt(string)",
+                        "string.int()"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What does the type() function do?",
+                    options: [
+                        "Returns the data type of a value",
+                        "Changes the type of a variable",
+                        "Prints the type of a variable",
+                        "Checks if a variable is defined"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which of these is a complex number in Python?",
+                    options: [
+                        "3+4j",
+                        "3+4i",
+                        "3j+4",
+                        "3i+4"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is the result of: '10' + '5'?",
+                    options: [
+                        "15",
+                        "105",
+                        "'105'",
+                        "Error"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "How do you create a multi-line string in Python?",
+                    options: [
+                        "Using triple quotes: ''' or \"\"\"",
+                        "Using parentheses",
+                        "Using backticks",
+                        "Using square brackets"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is the result of: bool(0)?",
+                    options: [
+                        "True",
+                        "False",
+                        "0",
+                        "Error"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What is the result of: 10 // 3?",
+                    options: [
+                        "3.333...",
+                        "3",
+                        "3.0",
+                        "1"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which operator is used for floor division in Python?",
+                    options: [
+                        "/",
+                        "//",
+                        "%",
+                        "**"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What is the result of: 2 ** 3?",
+                    options: [
+                        "6",
+                        "8",
+                        "9",
+                        "23"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "How do you check if two variables have the same value?",
+                    options: [
+                        "a = b",
+                        "a == b",
+                        "a === b",
+                        "a.equals(b)"
+                    ],
+                    correct: 1
+                }
+            ],
+            "3-control-statements": [
+                {
+                    question: "What does the 'if' statement do?",
+                    options: [
+                        "Executes code if condition is true",
+                        "Repeats code while condition is true",
+                        "Defines a function",
+                        "Imports a module"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which keyword is used for alternative conditions?",
+                    options: [
+                        "else",
+                        "elif",
+                        "switch",
+                        "case"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What is the output of: if 5 > 3: print('Yes')?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Error",
+                        "Nothing"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "How does Python denote code blocks?",
+                    options: [
+                        "Curly braces {}",
+                        "Indentation",
+                        "Parentheses ()",
+                        "Square brackets []"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What does 'for' loop do?",
+                    options: [
+                        "Repeats while condition true",
+                        "Iterates over sequence",
+                        "Defines class",
+                        "Handles exceptions"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What is the output of: for i in range(3): print(i)?",
+                    options: [
+                        "0 1 2",
+                        "1 2 3",
+                        "0 1 2 3",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What does 'while' loop do?",
+                    options: [
+                        "Iterates over list",
+                        "Repeats as long as condition is true",
+                        "Defines function",
+                        "Imports library"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which is correct syntax for else clause?",
+                    options: [
+                        "if condition: code else: code",
+                        "if condition: code; else: code",
+                        "if condition: code\nelse: code",
+                        "if condition: code { } else { code }"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What is nesting in control statements?",
+                    options: [
+                        "Putting one statement inside another",
+                        "Defining functions",
+                        "Importing modules",
+                        "Creating lists"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What will 'if not True:' do?",
+                    options: [
+                        "Execute the block",
+                        "Skip the block",
+                        "Error",
+                        "Loop forever"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "How to loop through dictionary keys?",
+                    options: [
+                        "for key in dict:",
+                        "for key in dict.keys():",
+                        "Both A and B",
+                        "None"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What is range(1,5) output in loop?",
+                    options: [
+                        "1 2 3 4",
+                        "1 2 3 4 5",
+                        "0 1 2 3 4",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which operator checks equality?",
+                    options: [
+                        "=",
+                        "==",
+                        "===",
+                        "eq"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What does 'and' operator do?",
+                    options: [
+                        "Logical AND",
+                        "Bitwise AND",
+                        "Addition",
+                        "Multiplication"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is infinite loop?",
+                    options: [
+                        "while True:",
+                        "for i in range(10):",
+                        "if True:",
+                        "def loop():"
+                    ],
+                    correct: 0
+                }
+            ],
+            "4-advanced-control": [
+                {
+                    question: "What does 'break' do?",
+                    options: [
+                        "Exits the loop",
+                        "Skips current iteration",
+                        "Does nothing",
+                        "Throws error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What does 'continue' do?",
+                    options: [
+                        "Exits the loop",
+                        "Skips to next iteration",
+                        "Stops program",
+                        "Defines placeholder"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What is 'pass' used for?",
+                    options: [
+                        "Placeholder for code",
+                        "Exit loop",
+                        "Skip iteration",
+                        "Throw exception"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "In nested loops, 'break' affects?",
+                    options: [
+                        "All loops",
+                        "Innermost loop",
+                        "Outermost loop",
+                        "None"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "How to skip even numbers in loop?",
+                    options: [
+                        "if i % 2 == 0: continue",
+                        "if i % 2 == 0: break",
+                        "if i % 2 == 0: pass",
+                        "if i % 2 == 0: return"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is output of for i in range(5): if i==3: break print(i)?",
+                    options: [
+                        "0 1 2",
+                        "0 1 2 3",
+                        "0 1 2 3 4",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is output of for i in range(5): if i==2: continue print(i)?",
+                    options: [
+                        "0 1 3 4",
+                        "0 1 2 3 4",
+                        "0 1 2",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "When is 'pass' useful?",
+                    options: [
+                        "Empty functions/classes",
+                        "In loops",
+                        "For errors",
+                        "All time"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Can 'break' be used in if statements?",
+                    options: [
+                        "No, only in loops",
+                        "Yes",
+                        "Only in switch",
+                        "Only in functions"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What happens without 'break' in loop?",
+                    options: [
+                        "Continues until condition false",
+                        "Immediate exit",
+                        "Skip all",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "How to exit nested loops?",
+                    options: [
+                        "Use flag variable",
+                        "Multiple breaks",
+                        "Can't",
+                        "Use return"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is labeled break?",
+                    options: [
+                        "Python doesn't have it",
+                        "Breaks specific loop",
+                        "Breaks all",
+                        "Breaks all"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Use of 'else' with loops?",
+                    options: [
+                        "Executes if no break",
+                        "Always executes",
+                        "Never executes",
+                        "For errors"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is 'for else'?",
+                    options: [
+                        "Executes if loop completes normally",
+                        "Alternative to for",
+                        "Error handler",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is 'while else'?",
+                    options: [
+                        "Same as for else",
+                        "Doesn't exist",
+                        "Always runs",
+                        "Runs on break"
+                    ],
+                    correct: 0
+                }
+            ],
+            "5-lists": [
+                {
+                    question: "How to create a list?",
+                    options: [
+                        "[]",
+                        "()",
+                        "{}",
+                        "<>"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Lists are mutable?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Sometimes",
+                        "Only strings"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "How to access first element?",
+                    options: [
+                        "list[0]",
+                        "list(0)",
+                        "list.first()",
+                        "list.get(1)"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What does append() do?",
+                    options: [
+                        "Adds to end",
+                        "Adds to start",
+                        "Removes last",
+                        "Sorts list"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is list slicing?",
+                    options: [
+                        "list[start:end]",
+                        "list.slice()",
+                        "list.cut()",
+                        "list.split()"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is output of [1,2,3][1] ?",
+                    options: [
+                        "2",
+                        "1",
+                        "3",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "How to remove item?",
+                    options: [
+                        "remove(value)",
+                        "delete(index)",
+                        "pop()",
+                        "All of above"
+                    ],
+                    correct: 3
+                },
+                {
+                    question: "What does sort() do?",
+                    options: [
+                        "Sorts in place",
+                        "Returns sorted copy",
+                        "Reverses",
+                        "Shuffles"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is len(list)?",
+                    options: [
+                        "Length of list",
+                        "Sum of elements",
+                        "Max element",
+                        "Min element"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Can lists have mixed types?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Only numbers",
+                        "Only strings"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is list comprehension?",
+                    options: [
+                        "[x for x in range(10)]",
+                        "list(range(10))",
+                        "Both",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "How to copy list?",
+                    options: [
+                        "list.copy()",
+                        "list[:]",
+                        "list(list)",
+                        "All"
+                    ],
+                    correct: 3
+                },
+                {
+                    question: "What does extend() do?",
+                    options: [
+                        "Adds multiple items",
+                        "Adds single item",
+                        "Removes items",
+                        "Sorts"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is index()?",
+                    options: [
+                        "Finds position of value",
+                        "Adds at index",
+                        "Removes at index",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Lists can be nested?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Only two levels",
+                        "Only flat"
+                    ],
+                    correct: 0
+                }
+            ],
+            "6-tuples-dictionaries": [
+                {
+                    question: "How to create tuple?",
+                    options: [
+                        "()",
+                        "[]",
+                        "{}",
+                        "<>"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Tuples are immutable?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Sometimes",
+                        "Like lists"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "How to create dictionary?",
+                    options: [
+                        "{}",
+                        "[]",
+                        "()",
+                        "dict()"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Dictionary keys must be?",
+                    options: [
+                        "Immutable",
+                        "Mutable",
+                        "Lists",
+                        "Any"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Access dict value?",
+                    options: [
+                        "dict[key]",
+                        "dict.get(key)",
+                        "Both",
+                        "dict.value(key)"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Tuple unpacking?",
+                    options: [
+                        "a,b = (1,2)",
+                        "a = (1,2)",
+                        "unpack((1,2))",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Dictionary items() returns?",
+                    options: [
+                        "Key-value pairs",
+                        "Keys only",
+                        "Values only",
+                        "Length"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Can tuples be keys in dict?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Only strings",
+                        "Only numbers"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is dict.pop(key)?",
+                    options: [
+                        "Removes and returns value",
+                        "Removes key",
+                        "Adds key",
+                        "Gets value"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Tuple can have one element?",
+                    options: [
+                        "(1,)",
+                        "(1)",
+                        "[1]",
+                        "{1}"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Dict comprehension?",
+                    options: [
+                        "{k:v for k,v in items}",
+                        "[k:v for k,v in items]",
+                        "(k:v for k,v in items)",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Update dict?",
+                    options: [
+                        "dict.update(other)",
+                        "dict + other",
+                        "dict.merge(other)",
+                        "All"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Tuple vs List?",
+                    options: [
+                        "Tuple immutable, list mutable",
+                        "Opposite",
+                        "Same",
+                        "Tuple faster"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Dict keys() returns?",
+                    options: [
+                        "View of keys",
+                        "List of values",
+                        "Pairs",
+                        "Length"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Can dict have duplicate keys?",
+                    options: [
+                        "No",
+                        "Yes",
+                        "Only values",
+                        "Sometimes"
+                    ],
+                    correct: 0
+                }
+            ],
+            "7-functions": [
+                {
+                    question: "How to define function?",
+                    options: [
+                        "def func():",
+                        "function func():",
+                        "func def():",
+                        "define func():"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Functions can return values?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Only print",
+                        "Only void"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Default parameters?",
+                    options: [
+                        "def func(a=1):",
+                        "def func(a):",
+                        "def func(1=a):",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is *args?",
+                    options: [
+                        "Variable arguments",
+                        "Keyword arguments",
+                        "Default",
+                        "Return"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is **kwargs?",
+                    options: [
+                        "Keyword arguments",
+                        "Variable arguments",
+                        "Positional",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Functions are first-class?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Sometimes",
+                        "No in Python"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Return multiple values?",
+                    options: [
+                        "return a,b",
+                        "return [a,b]",
+                        "Both",
+                        "Can't"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What is docstring?",
+                    options: [
+                        "'''doc'''",
+                        "Comment",
+                        "Print",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Function scope?",
+                    options: [
+                        "Local first",
+                        "Global first",
+                        "No scope",
+                        "Module"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Anonymous function?",
+                    options: [
+                        "lambda",
+                        "def",
+                        "anon",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is global keyword?",
+                    options: [
+                        "Access global var",
+                        "Create local",
+                        "Delete var",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Nonlocal keyword for?",
+                    options: [
+                        "Nested functions",
+                        "Global",
+                        "Local",
+                        "Module"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Functions can be nested?",
+                    options: [
+                        "Yes",
+                        "No",
+                        "Only top level",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is closure?",
+                    options: [
+                        "Function remembering values",
+                        "Closed function",
+                        "Error handler",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Recursive functions?",
+                    options: [
+                        "Call themselves",
+                        "Call others",
+                        "No call",
+                        "Error"
+                    ],
+                    correct: 0
+                }
+            ],
+            "8-advanced-functions": [
+                {
+                    question: "What is lambda function?",
+                    options: [
+                        "Anonymous function",
+                        "Named function",
+                        "Class",
+                        "Module"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Lambda can have multiple expressions?",
+                    options: [
+                        "No",
+                        "Yes",
+                        "Sometimes",
+                        "With def"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is recursion?",
+                    options: [
+                        "Function calls itself",
+                        "Calls another",
+                        "Loop",
+                        "Error"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Base case in recursion?",
+                    options: [
+                        "Stops recursion",
+                        "Starts recursion",
+                        "Errors",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Global scope?",
+                    options: [
+                        "Outside functions",
+                        "Inside functions",
+                        "In classes",
+                        "In modules"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Local scope?",
+                    options: [
+                        "Inside function",
+                        "Outside",
+                        "Global",
+                        "Module"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is map()?",
+                    options: [
+                        "Applies function to iterable",
+                        "Creates dict",
+                        "Filters",
+                        "Reduces"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "filter() does?",
+                    options: [
+                        "Filters based on function",
+                        "Maps",
+                        "Reduces",
+                        "Sorts"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "reduce() from functools?",
+                    options: [
+                        "Reduces to single value",
+                        "Filters",
+                        "Maps",
+                        "Sorts"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is decorator?",
+                    options: [
+                        "@decorator",
+                        "Function wrapper",
+                        "Both",
+                        "Class"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Generator functions?",
+                    options: [
+                        "yield",
+                        "return",
+                        "print",
+                        "None"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "What is iter()?",
+                    options: [
+                        "Makes iterator",
+                        "Makes list",
+                        "Makes dict",
+                        "None"
+                    ],
+                    correct: 0
+                }
+            ],
+            "9-classes-objects": [
+                {
+                    question: "How to create a list?",
+                    options: [
+                        "[]",
+                        "()",
+                        "{}",
+                        "<>"
+                    ],
+                    correct: 0
+                },
+                // Add more questions for this lesson if needed
+            ],
+            "10-inheritance": [
+                {
+                    question: "How to create a list?",
+                    options: [
+                        "[]",
+                        "()",
+                        "{}",
+                        "<>"
+                    ],
+                    correct: 0
+                },
+                // Add more questions for this lesson if needed
+            ]
+        };
+
+        // Visitor data structure
+        const VISITOR_DATA = {
+            uniqueVisitors: 0,
+            visitors: []
+        };
+
+        // Global variables
+        let deferredPrompt;
+        let pyodide;
+        let pyodideReadyPromise;
+        let currentLessonIndex = 0;
+        let currentQuizQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let quizStartTime = 0;
+        let quizTimerInterval = null;
+
+        // DOM elements
+        const installButton = document.getElementById('butInstall');
+        const toastInstall = document.getElementById('toastInstall');
+        const toastDismiss = document.getElementById('toastDismiss');
+        const installToast = document.getElementById('installToast');
+        const themeToggle = document.getElementById('themeToggle');
+        const visitorBtn = document.getElementById('visitorBtn');
+        const visitorView = document.getElementById('visitor-view');
+        const refreshVisitors = document.getElementById('refresh-visitors');
+        const backToDashboardFromVisitors = document.getElementById('back-to-dashboard-from-visitors');
+        const uniqueVisitorsElement = document.getElementById('unique-visitors');
+        const visitorJson = document.getElementById('visitor-json');
+
+        const dashboardView = document.getElementById('dashboard-view');
+        const lessonView = document.getElementById('lesson-view');
+        const lessonTitle = document.getElementById('lesson-title');
+        const lessonContentElement = document.getElementById('lesson-content-html');
+        const backToDashboard = document.getElementById('back-to-dashboard');
+        const prevLesson = document.getElementById('prev-lesson');
+        const nextLesson = document.getElementById('next-lesson');
+        const codeInput = document.getElementById('code-input');
+        const codeOutput = document.getElementById('code-output');
+        const runCode = document.getElementById('run-code');
+        const resetCode = document.getElementById('reset-code');
+        const challengeText = document.getElementById('challenge-text');
+        const checkChallenge = document.getElementById('check-challenge');
+        const markComplete = document.getElementById('mark-complete');
+        const startQuiz = document.getElementById('start-quiz');
+        const downloadAll = document.getElementById('downloadAll');
+
+        const quizView = document.getElementById('quiz-view');
+        const quizTitle = document.getElementById('quiz-title');
+        const quizProgressText = document.getElementById('quiz-progress-text');
+        const quizTimer = document.getElementById('quiz-timer');
+        const quizQuestionText = document.getElementById('quiz-question-text');
+        const quizOptionsContainer = document.getElementById('quiz-options-container');
+        const prevQuestionBtn = document.getElementById('prev-question');
+        const nextQuestionBtn = document.getElementById('next-question');
+        const submitQuizBtn = document.getElementById('submit-quiz');
+        const backFromQuizBtn = document.getElementById('back-from-quiz');
+        const quizQuestionsContainer = document.getElementById('quiz-questions-container');
+        const quizResults = document.getElementById('quiz-results');
+        const quizScore = document.getElementById('quiz-score');
+        const scoreMessage = document.getElementById('score-message');
+        const reviewQuizBtn = document.getElementById('review-quiz');
+        const retakeQuizBtn = document.getElementById('retake-quiz');
+        const backToLessonBtn = document.getElementById('back-to-lesson');
+        const quizFeedback = document.getElementById('quiz-feedback');
+
+        const downloadModal = document.getElementById('downloadModal');
+        const closeModal = document.querySelector('.close-modal');
+        const downloadOptions = document.querySelectorAll('.download-option');
+        const downloadProgress = document.getElementById('downloadProgress');
+        const downloadProgressBar = document.getElementById('downloadProgressBar');
+        const downloadStatus = document.getElementById('downloadStatus');
+
+        const noteToggle = document.getElementById('noteToggle');
+        const noteContent = document.getElementById('noteContent');
+
+        const moduleToggles = document.querySelectorAll('.module-toggle');
+
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendChat = document.getElementById('send-chat');
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+            }
+
+            // Initialize visitor tracking
+            initVisitorTracking();
+
+            // Render lesson cards
+            renderLessonCards(fundamentalsLessons, 'fundamentals-module');
+            renderLessonCards(controlLessons, 'control-module');
+            renderLessonCards(collectionsLessons, 'collections-module');
+            renderLessonCards(functionsLessons, 'functions-module');
+            renderLessonCards(oopLessons, 'oop-module');
+            updateOverallProgress(allLessons);
+
+            // Setup event listeners
+            setupEventListeners();
+
+            // Initialize PWA
+            initPWA();
+
+            // Initialize Pyodide
+            initPyodide();
+
+            // Ensure all modules are visible initially
+            document.querySelectorAll('.lesson-grid').forEach(grid => {
+                grid.style.display = 'grid';
+            });
+            moduleToggles.forEach(toggle => {
+                toggle.textContent = 'Hide';
+            });
+        });
+
+        // Setup all event listeners
+        function setupEventListeners() {
+            // Theme toggle
+            themeToggle.addEventListener('click', toggleTheme);
+
+            // Visitor functionality
+            visitorBtn.addEventListener('click', showVisitorDashboard);
+            refreshVisitors.addEventListener('click', refreshVisitorData);
+            backToDashboardFromVisitors.addEventListener('click', showDashboard);
+
+            // Lesson navigation
+            backToDashboard.addEventListener('click', showDashboard);
+            prevLesson.addEventListener('click', showPreviousLesson);
+            nextLesson.addEventListener('click', showNextLesson);
+
+            // Code editor
+            runCode.addEventListener('click', executeCode);
+            resetCode.addEventListener('click', resetCodeEditor);
+            checkChallenge.addEventListener('click', checkChallengeSolution);
+            markComplete.addEventListener('click', toggleLessonCompletion);
+            startQuiz.addEventListener('click', startLessonQuiz);
+            codeInput.addEventListener('keydown', handleCodeIndentation);
+            codeInput.addEventListener('input', saveCodeToLocalStorage);
+
+            // AI Chat - Using Gemini instead of Grok
+            sendChat.addEventListener('click', sendToGemini);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendToGemini();
+                }
+            });
+
+            // Download functionality
+            downloadAll.addEventListener('click', showDownloadModal);
+            closeModal.addEventListener('click', hideDownloadModal);
+            downloadOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const downloadType = option.getAttribute('data-type');
+                    handleDownload(downloadType);
+                });
+            });
+
+            // Module toggles
+            moduleToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const module = toggle.getAttribute('data-module');
+                    const moduleElement = document.getElementById(`${module}-module`);
+                    const isVisible = window.getComputedStyle(moduleElement).display !== 'none';
+                    if (isVisible) {
+                        moduleElement.style.display = 'none';
+                        toggle.textContent = 'Show';
+                    } else {
+                        moduleElement.style.display = 'grid';
+                        toggle.textContent = 'Hide';
+                    }
+                });
+            });
+
+            // Python note toggle
+            noteToggle.addEventListener('click', () => {
+                noteContent.classList.toggle('active');
+                noteToggle.textContent = noteContent.classList.contains('active') ? '▲' : '▼';
+            });
+
+            // PWA installation
+            installButton.addEventListener('click', showInstallPrompt);
+            toastInstall.addEventListener('click', installPWA);
+            toastDismiss.addEventListener('click', dismissInstallPrompt);
+
+            // Quiz functionality
+            backFromQuizBtn.addEventListener('click', backToLessonFromQuiz);
+            prevQuestionBtn.addEventListener('click', showPreviousQuestion);
+            nextQuestionBtn.addEventListener('click', showNextQuestion);
+            submitQuizBtn.addEventListener('click', submitQuiz);
+            reviewQuizBtn.addEventListener('click', reviewQuiz);
+            retakeQuizBtn.addEventListener('click', retakeQuiz);
+            backToLessonBtn.addEventListener('click', backToLessonFromResults);
+
+            // Search functionality
+            searchInput.addEventListener('input', handleSearch);
+            searchInput.addEventListener('focus', () => {
+                if (searchInput.value.length > 0) {
+                    searchResults.style.display = 'block';
+                }
+            });
+            searchInput.addEventListener('blur', () => {
+                setTimeout(() => {
+                    searchResults.style.display = 'none';
+                }, 200);
+            });
+
+            // Modal close on outside click
+            window.addEventListener('click', (e) => {
+                if (e.target === downloadModal) {
+                    hideDownloadModal();
+                }
+            });
+
+            // Prevent view source and right-click
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            document.addEventListener('keydown', function (e) {
+                if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        }
+        // Handle code indentation
+        function handleCodeIndentation(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const textBefore = this.value.substring(0, start);
+                const lastLine = textBefore.split('\n').pop();
+                const indentMatch = lastLine.match(/^\s*/);
+                let indent = indentMatch ? indentMatch[0] : '';
+                if (lastLine.trim().endsWith(':')) {
+                    indent += '    ';
+                }
+                this.value = textBefore + '\n' + indent + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 1 + indent.length;
+            } else if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                if (start === end) {
+                    this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                    this.selectionStart = this.selectionEnd = start + 4;
+                }
+            } else if (e.ctrlKey && e.key === 'Enter') {
+                executeCode();
+            }
+        }
+
+        // Save code to local storage
+        function saveCodeToLocalStorage() {
+            const lesson = allLessons[currentLessonIndex];
+            localStorage.setItem(`lesson-${lesson.id}-code`, this.value);
+        }
+
+        // Initialize visitor tracking
+        function initVisitorTracking() {
+            // Load visitor data from localStorage or initialize
+            const savedVisitors = localStorage.getItem('pythonBootcampVisitors');
+            if (savedVisitors) {
+                const parsedData = JSON.parse(savedVisitors);
+                Object.assign(VISITOR_DATA, parsedData);
+            }
+
+            // Track this visit
+            trackVisitor();
+        }
+
+        // Track visitor
+        function trackVisitor() {
+            // Generate a unique visitor ID if not exists
+            let visitorId = localStorage.getItem('visitorId');
+            if (!visitorId) {
+                visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('visitorId', visitorId);
+                VISITOR_DATA.uniqueVisitors++;
+                VISITOR_DATA.visitors.push({
+                    id: visitorId,
+                    firstVisit: new Date().toISOString()
+                });
+            }
+
+            // Save updated visitor data
+            saveVisitorData();
+        }
+
+        // Save visitor data to localStorage
+        function saveVisitorData() {
+            localStorage.setItem('pythonBootcampVisitors', JSON.stringify(VISITOR_DATA));
+        }
+
+        // Show visitor dashboard
+        function showVisitorDashboard() {
+            hideAllViews();
+            visitorView.style.display = 'block';
+            refreshVisitorData();
+        }
+
+        // Refresh visitor data
+        function refreshVisitorData() {
+            // Load the latest data
+            const savedVisitors = localStorage.getItem('pythonBootcampVisitors');
+            if (savedVisitors) {
+                const parsedData = JSON.parse(savedVisitors);
+                Object.assign(VISITOR_DATA, parsedData);
+            }
+
+            // Update UI
+            uniqueVisitorsElement.textContent = VISITOR_DATA.uniqueVisitors;
+
+            // Show visitor list
+            visitorJson.textContent = JSON.stringify(VISITOR_DATA.visitors, null, 2);
+        }
+
+        // Hide all views
+        function hideAllViews() {
+            dashboardView.style.display = 'none';
+            lessonView.style.display = 'none';
+            quizView.style.display = 'none';
+            visitorView.style.display = 'none';
+        }
+
+        // Initialize Pyodide
+        async function initPyodide() {
+            try {
+                pyodideReadyPromise = loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.1/full/",
+                });
+                pyodide = await pyodideReadyPromise;
+                console.log("Pyodide loaded successfully");
+            } catch (error) {
+                console.error("Error loading Pyodide:", error);
+                codeOutput.textContent = "Error: Unable to load Python interpreter. Please check your internet connection.";
+            }
+        }
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Lesson functionality
+        function renderLessonCards(lessons, containerId) {
+            const lessonList = document.getElementById(containerId);
+            lessonList.innerHTML = '';
+
+            lessons.forEach((lesson, index) => {
+                const isCompleted = localStorage.getItem(`lesson-${lesson.id}-completed`) === 'true';
+                const card = document.createElement('div');
+                card.className = `lesson-card ${isCompleted ? 'completed' : ''}`;
+                card.dataset.index = allLessons.find(l => l.id === lesson.id).index; // Fixed: was using findIndex, but dataset.index is string
+
+                card.innerHTML = `
+                    <div class="lesson-image">
+                        <img src="${lesson.image}" alt="${lesson.title}">
+                    </div>
+                     <div class="lesson-content">
+                        <div class="lesson-status">${isCompleted ? '✓' : '→'}</div>
+                        <h3>${lesson.title}</h3>
+                        <p>${lesson.description}</p>
+                        <ul class="lesson-meta">
+                            <li>${lesson.estimatedTime}</li>
+                            <li>${lesson.challenges} Challenges</li>
+                        </ul>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    const globalIndex = allLessons.findIndex(l => l.id === lesson.id);
+                    showLesson(globalIndex);
+                });
+                lessonList.appendChild(card);
+            });
+        }
+
+        function showLesson(index) {
+            currentLessonIndex = index;
+            const lesson = allLessons[index];
+
+            lessonTitle.textContent = lesson.title;
+            lessonContentElement.innerHTML = lesson.content;
+            const savedCode = localStorage.getItem(`lesson-${lesson.id}-code`);
+            codeInput.value = savedCode || lesson.defaultCode;
+            codeOutput.textContent = 'Output will appear here...';
+            challengeText.textContent = lesson.challenge;
+
+            prevLesson.disabled = index === 0;
+            nextLesson.disabled = index === allLessons.length - 1;
+
+            const isCompleted = localStorage.getItem(`lesson-${lesson.id}-completed`) === 'true';
+            markComplete.textContent = isCompleted ? 'Mark as Incomplete' : 'Mark as Complete';
+
+            // Clear chat messages when switching lessons
+            chatMessages.innerHTML = '';
+
+            dashboardView.style.display = 'none';
+            lessonView.style.display = 'block';
+
+            window.scrollTo(0, 0);
+        }
+
+        function showDashboard() {
+            lessonView.style.display = 'none';
+            quizView.style.display = 'none';
+            visitorView.style.display = 'none';
+            dashboardView.style.display = 'block';
+
+            // Refresh lesson cards to update completion status
+            renderLessonCards(fundamentalsLessons, 'fundamentals-module');
+            renderLessonCards(controlLessons, 'control-module');
+            renderLessonCards(collectionsLessons, 'collections-module');
+            renderLessonCards(functionsLessons, 'functions-module');
+            renderLessonCards(oopLessons, 'oop-module');
+            updateOverallProgress(allLessons);
+        }
+
+        function showPreviousLesson() {
+            if (currentLessonIndex > 0) {
+                showLesson(currentLessonIndex - 1);
+            }
+        }
+
+        function showNextLesson() {
+            if (currentLessonIndex < allLessons.length - 1) {
+                showLesson(currentLessonIndex + 1);
+            }
+        }
+
+        async function executeCode() {
+            if (!pyodide) {
+                codeOutput.textContent = "Python interpreter is still loading. Please wait...";
+                return;
+            }
+
+            const code = codeInput.value;
+            codeOutput.textContent = "Running code...";
+
+            try {
+                await pyodideReadyPromise;
+
+                await pyodide.runPythonAsync(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+sys.stderr = StringIO()
+                `);
+
+                let result = await pyodide.runPythonAsync(code);
+
+                let stdout = pyodide.runPython("sys.stdout.getvalue()");
+                let stderr = pyodide.runPython("sys.stderr.getvalue()");
+
+                let output = stdout + stderr;
+
+                if (result !== undefined && !output) {
+                    output = result.toString();
+                }
+
+                codeOutput.textContent = output || "Code executed successfully (no output).";
+            } catch (err) {
+                codeOutput.textContent = `Error: ${err.message}`;
+            }
+        }
+
+        function resetCodeEditor() {
+            codeInput.value = allLessons[currentLessonIndex].defaultCode;
+            codeOutput.textContent = 'Output will appear here...';
+        }
+
+        function checkChallengeSolution() {
+            const lesson = allLessons[currentLessonIndex];
+            const code = codeInput.value;
+
+            let passed = false;
+            let message = "Try again!";
+
+            switch (lesson.id) {
+                case "1-intro":
+                    passed = code.includes('print(') && !code.includes('"World"') && !code.includes("'World'");
+                    message = passed ? "Great job! You personalized the message." : "Try printing your name instead of 'World'";
+                    break;
+                case "2-variables":
+                    passed = code.includes('=') && code.includes('print(');
+                    message = passed ? "Well done! You've created and displayed variables." : "Make sure to create variables and print them";
+                    break;
+                case "5-lists":
+                    passed = code.includes('sum(') || (code.includes('+') && code.includes('for'));
+                    message = passed ? "Great! You're working with lists." : "Try using the sum() function or a loop to calculate the sum";
+                    break;
+                case "6-tuples-dictionaries":
+                    passed = code.includes('{') && code.includes('}') && code.includes('[') && code.includes(']');
+                    message = passed ? "Excellent! You're using dictionaries." : "Make sure to create a dictionary with product information";
+                    break;
+                case "9-classes-objects":
+                    passed = code.includes('class') && code.includes('def __init__');
+                    message = passed ? "Great job! You're creating classes and objects." : "Make sure to define a class with a constructor";
+                    break;
+                case "10-inheritance":
+                    passed = code.includes('class') && code.includes('(') && code.includes(')');
+                    message = passed ? "Excellent! You're using inheritance." : "Try creating a child class that inherits from a parent class";
+                    break;
+                default:
+                    message = "Challenge checking not implemented for this lesson";
+            }
+
+            alert(message);
+        }
+
+        function toggleLessonCompletion() {
+            const lesson = allLessons[currentLessonIndex];
+            const isCompleted = localStorage.getItem(`lesson-${lesson.id}-completed`) === 'true';
+
+            if (isCompleted) {
+                localStorage.removeItem(`lesson-${lesson.id}-completed`);
+                markComplete.textContent = 'Mark as Complete';
+            } else {
+                localStorage.setItem(`lesson-${lesson.id}-completed`, 'true');
+                markComplete.textContent = 'Mark as Incomplete';
+            }
+
+            updateOverallProgress(allLessons);
+        }
+
+        function updateOverallProgress(lessons) {
+            const totalLessons = lessons.length;
+            const completedLessons = lessons.filter(lesson => localStorage.getItem(`lesson-${lesson.id}-completed`) === 'true').length;
+            const progressPercentage = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+
+            document.getElementById('overallProgressBar').style.width = `${progressPercentage}%`;
+            document.getElementById('overallProgressText').innerHTML = `Overall Progress: <strong>${progressPercentage}%</strong> (${completedLessons}/${totalLessons} lessons)`;
+        }
+
+        // Quiz functionality
+        function startLessonQuiz() {
+            const lesson = allLessons[currentLessonIndex];
+            if (!lesson) return;
+
+            // Set quiz title
+            quizTitle.textContent = `Quiz: ${lesson.title}`;
+
+            // Get questions for this lesson and randomize order
+            currentQuizQuestions = [...quizData[lesson.id] || []];
+            if (currentQuizQuestions.length === 0) {
+                alert('No quiz questions available for this lesson yet.');
+                return;
+            }
+
+            shuffleArray(currentQuizQuestions);
+
+            // Reset quiz state
+            currentQuestionIndex = 0;
+            userAnswers = new Array(currentQuizQuestions.length).fill(null);
+
+            // Start timer
+            quizStartTime = Date.now();
+            if (quizTimerInterval) clearInterval(quizTimerInterval);
+            quizTimerInterval = setInterval(updateQuizTimer, 1000);
+
+            // Show first question
+            showQuestion(0);
+
+            // Show quiz view, hide other views
+            dashboardView.style.display = 'none';
+            lessonView.style.display = 'none';
+            quizView.style.display = 'block';
+
+            // Show quiz questions, hide results
+            quizQuestionsContainer.style.display = 'block';
+            quizResults.style.display = 'none';
+        }
+
+        function showQuestion(index) {
+            if (index < 0 || index >= currentQuizQuestions.length) return;
+
+            currentQuestionIndex = index;
+            const question = currentQuizQuestions[index];
+
+            // Update progress text
+            quizProgressText.textContent = `Question ${index + 1} of ${currentQuizQuestions.length}`;
+
+            // Set question text
+            quizQuestionText.textContent = question.question;
+
+            // Clear options container
+            quizOptionsContainer.innerHTML = '';
+
+            // Add options
+            question.options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = `quiz-option ${userAnswers[index] === i ? 'selected' : ''}`;
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectOption(i));
+                quizOptionsContainer.appendChild(optionElement);
+            });
+
+            // Update navigation buttons
+            prevQuestionBtn.disabled = index === 0;
+            nextQuestionBtn.disabled = index === currentQuizQuestions.length - 1;
+            nextQuestionBtn.style.display = index === currentQuizQuestions.length - 1 ? 'none' : 'block';
+            submitQuizBtn.style.display = index === currentQuizQuestions.length - 1 ? 'block' : 'none';
+        }
+
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestionIndex] = optionIndex;
+
+            // Update visual selection
+            const options = quizOptionsContainer.querySelectorAll('.quiz-option');
+            options.forEach((option, i) => {
+                option.classList.toggle('selected', i === optionIndex);
+            });
+        }
+
+        function showPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        function showNextQuestion() {
+            if (currentQuestionIndex < currentQuizQuestions.length - 1) {
+                showQuestion(currentQuestionIndex + 1);
+            }
+        }
+
+        function updateQuizTimer() {
+            const elapsedSeconds = Math.floor((Date.now() - quizStartTime) / 1000);
+            const minutes = Math.floor(elapsedSeconds / 60);
+            const seconds = elapsedSeconds % 60;
+            quizTimer.textContent = `Time: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function submitQuiz() {
+            // Stop timer
+            if (quizTimerInterval) {
+                clearInterval(quizTimerInterval);
+                quizTimerInterval = null;
+            }
+
+            // Calculate score
+            let correctCount = 0;
+            currentQuizQuestions.forEach((question, i) => {
+                if (userAnswers[i] === question.correct) {
+                    correctCount++;
+                }
+            });
+
+            const score = Math.round((correctCount / currentQuizQuestions.length) * 100);
+            quizScore.textContent = score;
+
+            // Set score message
+            if (score >= 80) {
+                scoreMessage.textContent = "Excellent work!";
+            } else if (score >= 60) {
+                scoreMessage.textContent = "Good job!";
+            } else if (score >= 40) {
+                scoreMessage.textContent = "Not bad, but keep practicing!";
+            } else {
+                scoreMessage.textContent = "Keep studying and try again!";
+            }
+
+            // Show results, hide questions
+            quizQuestionsContainer.style.display = 'none';
+            quizResults.style.display = 'block';
+            quizFeedback.style.display = 'none';
+        }
+
+        function reviewQuiz() {
+            quizFeedback.innerHTML = '';
+
+            currentQuizQuestions.forEach((question, i) => {
+                const isCorrect = userAnswers[i] === question.correct;
+                const feedbackItem = document.createElement('div');
+                feedbackItem.className = `feedback-item ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}`;
+
+                feedbackItem.innerHTML = `
+                    <p><strong>Question ${i + 1}:</strong> ${question.question}</p>
+                    <p><strong>Your answer:</strong> ${question.options[userAnswers[i]] || 'Not answered'}</p>
+                    ${!isCorrect ? `<p><strong>Correct answer:</strong> ${question.options[question.correct]}</p>` : ''}
+                `;
+
+                quizFeedback.appendChild(feedbackItem);
+            });
+
+            quizFeedback.style.display = 'block';
+        }
+
+        function retakeQuiz() {
+            startLessonQuiz();
+        }
+
+        function backToLessonFromQuiz() {
+            // Stop timer if running
+            if (quizTimerInterval) {
+                clearInterval(quizTimerInterval);
+                quizTimerInterval = null;
+            }
+
+            quizView.style.display = 'none';
+            lessonView.style.display = 'block';
+        }
+
+        function backToLessonFromResults() {
+            quizView.style.display = 'none';
+            lessonView.style.display = 'block';
+        }
+
+        // Utility function to shuffle array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // PWA functionality
+        function initPWA() {
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                installButton.style.display = 'block';
+                setTimeout(showInstallToast, 5000);
+            });
+
+            window.addEventListener('appinstalled', () => {
+                installButton.style.display = 'none';
+                installToast.style.display = 'none';
+                deferredPrompt = null;
+                console.log('PWA was installed');
+            });
+        }
+
+        function showInstallPrompt() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                alert("For now, to install this app: \n1. Use Chrome or Edge browser \n2. Click the 'Install' icon in the address bar \n3. Or go to browser menu and select 'Install'");
+            }
+        }
+
+        function showInstallToast() {
+            if (!deferredPrompt || localStorage.getItem('dismissedInstall') === 'true') return;
+            installToast.style.display = 'block';
+        }
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    deferredPrompt = null;
+                    installToast.style.display = 'none';
+                });
+            }
+        }
+
+        function dismissInstallPrompt() {
+            installToast.style.display = 'none';
+            localStorage.setItem('dismissedInstall', 'true');
+        }
+
+        // Download functionality
+        function showDownloadModal() {
+            downloadModal.style.display = 'flex';
+        }
+
+        function hideDownloadModal() {
+            downloadModal.style.display = 'none';
+            downloadProgress.style.display = 'none';
+            downloadProgressBar.style.width = '0%';
+            downloadStatus.textContent = '';
+        }
+
+        function handleDownload(downloadType) {
+            downloadProgress.style.display = 'block';
+            downloadStatus.textContent = 'Preparing download...';
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                downloadProgressBar.style.width = `${progress}%`;
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    generatePDF(downloadType);
+                }
+            }, 100);
+        }
+
+        function generatePDF(downloadType) {
+            if (typeof window.jspdf === 'undefined') {
+                downloadStatus.textContent = 'Error: PDF library not loaded. Please check your connection.';
+                setTimeout(hideDownloadModal, 3000);
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const currentLesson = allLessons[currentLessonIndex];
+            const currentModule = currentLesson.module;
+
+            let content = '';
+            let filename = '';
+
+            switch (downloadType) {
+                case 'current-lesson':
+                    content = createPDFContent([currentLesson]);
+                    filename = `${currentLesson.id}.pdf`;
+                    break;
+                case 'module-lessons':
+                    let moduleLessons = [];
+                    if (currentModule === 'fundamentals') moduleLessons = fundamentalsLessons;
+                    else if (currentModule === 'control') moduleLessons = controlLessons;
+                    else if (currentModule === 'collections') moduleLessons = collectionsLessons;
+                    else if (currentModule === 'functions') moduleLessons = functionsLessons;
+                    else if (currentModule === 'oop') moduleLessons = oopLessons;
+                    content = createPDFContent(moduleLessons);
+                    filename = `python-${currentModule}-module.pdf`;
+                    break;
+                case 'all-lesson':
+                    content = createPDFContent(allLessons);
+                    filename = 'python-bootcamp-complete.pdf';
+                    break;
+                case 'code-examples':
+                    content = createCodeExamplesPDF(allLessons);
+                    filename = 'python-bootcamp-code-examples.pdf';
+                    break;
+            }
+
+            doc.setFontSize(12);
+            const pageHeight = doc.internal.pageSize.height;
+            const textLines = doc.splitTextToSize(content, 180);
+            let y = 10;
+
+            for (let i = 0; i < textLines.length; i++) {
+                if (y > pageHeight - 10) {
+                    doc.addPage();
+                    y = 10;
+                }
+                doc.text(textLines[i], 10, y);
+                y += 7;
+            }
+
+            const pdfBlob = doc.output('blob');
+            const url = URL.createObjectURL(pdfBlob);
+            const downloadLink = document.createElement('a');
+            downloadLink.href = url;
+            downloadLink.download = filename;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+
+            setTimeout(() => {
+                document.body.removeChild(downloadLink);
+                URL.revokeObjectURL(url);
+            }, 100);
+
+            downloadStatus.textContent = 'Download complete!';
+            setTimeout(hideDownloadModal, 2000);
+        }
+
+        function createPDFContent(lessons) {
+            let content = 'Musumba Python Bootcamp\n\n';
+
+            lessons.forEach(lesson => {
+                content += `# ${lesson.title}\n\n`;
+                content += `${lesson.description}\n\n`;
+                content += `${lesson.content.replace(/<[^>]*>/g, '')}\n\n`;
+                content += `## Code Example\n${lesson.defaultCode}\n\n`;
+                content += `## Challenge\n${lesson.challenge}\n\n`;
+                content += '---\n\n';
+            });
+
+            return content;
+        }
+
+        function createCodeExamplesPDF(lessons) {
+            let content = 'Musumba Python Bootcamp - Code Examples\n\n';
+
+            lessons.forEach(lesson => {
+                content += `## ${lesson.title}\n${lesson.defaultCode}\n\n`;
+            });
+
+            return content;
+        }
+
+        // Handle search functionality
+        function handleSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+
+            if (query.length === 0) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            // Search through lessons
+            const results = allLessons.filter(lesson =>
+                lesson.title.toLowerCase().includes(query) ||
+                lesson.description.toLowerCase().includes(query) ||
+                lesson.content.toLowerCase().includes(query)
+            );
+
+            // Display results
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(lesson => `
+                    <div class="search-result-item" data-lesson-id="${lesson.id}">
+                        <strong>${lesson.title}</strong>
+                        <p>${lesson.description}</p>
+                    </div>
+                `).join('');
+
+                searchResults.style.display = 'block';
+
+                // Add event listeners to search results
+                document.querySelectorAll('.search-result-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const lessonId = item.getAttribute('data-lesson-id');
+                        const lessonIndex = allLessons.findIndex(lesson => lesson.id === lessonId);
+                        if (lessonIndex !== -1) {
+                            showLesson(lessonIndex);
+                            searchResults.style.display = 'none';
+                            searchInput.value = '';
+                        }
+                    });
+                });
+            } else {
+                searchResults.innerHTML = '<div class="search-result-item">No results found</div>';
+                searchResults.style.display = 'block';
+            }
+        }
+        // AI Chat functionality - Using Gemini API
+        async function sendToGemini() {
+            const question = chatInput.value.trim();
+            if (!question) return;
+
+            // Add user message
+            addChatMessage('user', question);
+            chatInput.value = '';
+
+            // Get current lesson and code for context
+            const lesson = allLessons[currentLessonIndex];
+            const currentCode = codeInput.value;
+
+            // Build prompt (short, focused answer style)
+            const prompt = `User is in Python lesson: ${lesson.title}
+Lesson description: ${lesson.description}
+Current code in editor:
+\`\`\`python
+${currentCode}
+\`\`\`
+
+User question: ${question}
+
+⚡ Answer concisely:
+- Show a clear Python code example first.
+- Then give a short explanation (max 2–4 lines).
+- Do NOT write long essays or extra theory.`;
+
+            // Add loading message
+            const loadingMsg = addChatMessage('ai', 'Thinking...');
+
+            try {
+                const response = await fetch(
+                    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyC43lJ1UbVPDbIPv_mejrKT9A7SOBHYwU8",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            contents: [
+                                {
+                                    parts: [{ text: prompt }],
+                                },
+                            ],
+                        }),
+                    }
+                );
+
+                if (!response.ok) {
+                    const errData = await response.json();
+                    console.error("Gemini API error response:", errData);
+                    throw new Error(
+                        `API error: ${response.status} - ${errData.error?.message || response.statusText}`
+                    );
+                }
+
+                const data = await response.json();
+                const aiResponse = data.candidates[0].content.parts[0].text.trim();
+
+                // Replace loading message with formatted response
+                loadingMsg.innerHTML = formatAIResponse(aiResponse);
+
+                // Highlight syntax
+                Prism.highlightAllUnder(loadingMsg);
+
+                // Add copy button for each code block
+                addCopyButtons(loadingMsg);
+            } catch (error) {
+                loadingMsg.textContent = `Error: ${error.message}. Check console for details.`;
+                console.error("Gemini API error:", error);
+            }
+        }
+
+        function formatAIResponse(response) {
+            let formatted = response;
+
+            // Remove surrounding quotes
+            formatted = formatted.replace(/^"(.*)"$/, "$1");
+
+            // Bold text: **something**
+            formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+
+            // Code blocks: ```python ... ```
+            formatted = formatted.replace(
+                /```python([\s\S]*?)```/g,
+                "<pre class='code-block'><code class='language-python'>$1</code></pre>"
+            );
+            formatted = formatted.replace(
+                /```([\s\S]*?)```/g,
+                "<pre class='code-block'><code>$1</code></pre>"
+            );
+
+            // Inline code: `something`
+            formatted = formatted.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+            return formatted;
+        }
+
+        function addChatMessage(sender, message) {
+            const msgDiv = document.createElement("div");
+            msgDiv.className = `chat-message ${sender}`;
+
+            if (sender === "ai") {
+                msgDiv.innerHTML = formatAIResponse(message);
+                Prism.highlightAllUnder(msgDiv);
+                addCopyButtons(msgDiv);
+            } else {
+                msgDiv.textContent = message;
+            }
+
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return msgDiv;
+        }
+
+        // Add "Copy" button to code blocks
+        function addCopyButtons(container) {
+            const codeBlocks = container.querySelectorAll("pre.code-block");
+            codeBlocks.forEach((block) => {
+                if (block.querySelector(".copy-btn")) return; // avoid duplicates
+
+                const btn = document.createElement("button");
+                btn.textContent = "Copy";
+                btn.className = "copy-btn";
+                btn.onclick = () => {
+                    const code = block.querySelector("code").innerText;
+                    navigator.clipboard.writeText(code);
+                    btn.textContent = "Copied!";
+                    setTimeout(() => (btn.textContent = "Copy"), 2000);
+                };
+
+                block.style.position = "relative";
+                btn.style.position = "absolute";
+                btn.style.top = "5px";
+                btn.style.right = "5px";
+                btn.style.padding = "2px 6px";
+                btn.style.fontSize = "12px";
+                btn.style.cursor = "pointer";
+
+                block.appendChild(btn);
+            });
+        }
+    </script>
+</body>
+
+</html>

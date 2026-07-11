@@ -1,0 +1,61 @@
+/* src/components/Header.css */
+.simple-header {
+  background: var(--forest, #1F3B2C);
+  padding: 0.8rem 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.logo-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--gold, #EFA83C);
+  color: var(--forest-dark, #16291D);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.logo-period {
+  color: var(--gold, #EFA83C);
+}
+
+.header-nav a {
+  color: #d9dfd7;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+}
+
+.header-nav a:hover {
+  color: var(--gold, #EFA83C);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 600px) {
+  .header-container {
+    padding: 0 1.2rem;
+  }
+}

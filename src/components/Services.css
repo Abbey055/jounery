@@ -1,0 +1,123 @@
+/* src/components/Services.css */
+.services-page {
+  padding: 5rem 2rem;
+  background: #f8f9ff;
+}
+
+.services-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3.5rem;
+}
+
+.services-header h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #6C63FF;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.services-header h3 {
+  font-size: 2.8rem;
+  color: #2d2d2d;
+  font-weight: 700;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.service-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  color: #2d2d2d;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.service-card p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6C63FF;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.service-link:hover {
+  gap: 0.8rem;
+  color: #5a52d6;
+}
+
+.service-link i {
+  font-size: 0.85rem;
+}
+
+@media (max-width: 968px) {
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .services-header h3 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-header h3 {
+    font-size: 1.8rem;
+  }
+
+  .service-card {
+    padding: 2rem 1.5rem;
+  }
+}

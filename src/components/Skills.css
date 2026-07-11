@@ -1,0 +1,147 @@
+/* src/components/Skills.css */
+.skills-page {
+  padding: 5rem 2rem;
+  background: #ffffff;
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.skills-header h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #6C63FF;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.skills-header h3 {
+  font-size: 2.8rem;
+  color: #2d2d2d;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+}
+
+.tools-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tool-item {
+  background: #f8f9ff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+}
+
+.tool-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.tool-name {
+  font-weight: 500;
+  color: #2d2d2d;
+  font-size: 0.95rem;
+}
+
+.tool-percentage {
+  color: #6C63FF;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #e8e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6C63FF, #a78bfa);
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+.skills-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: #6C63FF;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #5a52d6;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #6C63FF;
+  border: 2px solid #6C63FF;
+}
+
+.btn-outline:hover {
+  background: #6C63FF;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .skills-header h3 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-header h3 {
+    font-size: 1.8rem;
+  }
+
+  .skills-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
