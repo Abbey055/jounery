@@ -16,13 +16,16 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Ssenkubuge Abbey | IT Specialist &amp; Software Developer" />
     <meta property="og:description" content="Portfolio of Ssenkubuge Abbey, an IT specialist and software developer focused on practical digital solutions." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://your-portfolio-url.com" />
+    <meta property="og:url" content="https://musumba.space" />
     <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -32,6 +35,18 @@
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#1F3B2C" />
+    
+    <!-- Author -->
+    <meta name="author" content="Ssenkubuge Abbey" />
+    
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://musumba.space" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -44,6 +59,13 @@
     <script type="text/javascript">
       var Tawk_API = Tawk_API || {};
       var Tawk_LoadStart = new Date();
+      
+      // Optional: Pre-fill visitor info if available
+      // Tawk_API.visitor = {
+      //   name: 'Visitor Name',
+      //   email: 'visitor@email.com'
+      // };
+      
       (function() {
         var s1 = document.createElement("script"),
           s0 = document.getElementsByTagName("script")[0];
@@ -53,6 +75,9 @@
         s1.setAttribute('crossorigin', '*');
         s0.parentNode.insertBefore(s1, s0);
       })();
+      
+      // Log when widget is loaded
+      console.log('🔧 Tawk.to widget script loaded');
     </script>
     <!--End of Tawk.to Script-->
 
