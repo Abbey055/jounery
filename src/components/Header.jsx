@@ -40,40 +40,73 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#1F3B2C] py-2 sm:py-3 px-3 sm:px-4 md:px-6">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo with eyebrow text style */}
-        <Link to="/" className="flex items-center gap-2 sm:gap-3 text-white">
-          {/* Circular badge with "A" */}
-          <span className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-[#EFA83C] text-[#1F3B2C] flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-extrabold flex-shrink-0">
+    <header className="main-header">
+      <div className="max-w-7xl mx-auto flex justify-between items-center w-full px-4 sm:px-6 py-2 sm:py-3">
+        <Link to="/" className="flex items-center gap-1.5 sm:gap-2 text-white font-bold text-base sm:text-lg md:text-xl flex-shrink-0">
+          <span className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-[#EFA83C] text-[#1F3B2C] flex items-center justify-center text-[9px] sm:text-[10px] md:text-sm font-bold">
             A
           </span>
-
-          {/* Brand name with eyebrow text - using serif italic for "Abbey" */}
-          <div className="flex flex-col leading-none">
-            {/* Eyebrow text - small uppercase label */}
-            <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-[#EFA83C] font-semibold">
-              Ssenkubuge
-            </span>
-            {/* Main brand name with italic serif style */}
-            <span className="font-bold text-base sm:text-lg md:text-xl tracking-wide flex items-baseline gap-0.5">
-              <span style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }} className="italic text-white">
-                Abbey
-              </span>
-              <span className="text-[#EFA83C]">.</span>
-            </span>
-          </div>
+          <span className="text-sm sm:text-base md:text-xl whitespace-nowrap">Abbey<span className="text-[#EFA83C]">.</span></span>
         </Link>
 
         <button 
-          className="md:hidden p-1 sm:p-1.5 text-white" 
+          className="md:hidden p-1 sm:p-1.5 text-white focus:outline-none" 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
         >
-          {isMenuOpen ? <i className="fa-solid fa-xmark text-xl sm:text-2xl"></i> : <i className="fa-solid fa-bars text-xl sm:text-2xl"></i>}
+          {isMenuOpen ? (
+            <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          ) : (
+            <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          )}
         </button>
 
-        <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block absolute md:static top-full left-0 right-0 bg-[#1F3B2C] md:bg-transparent p-4 sm:p-5 md:p-0 shadow-lg md:shadow-none`}>
-          <ul className="flex flex-col md:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-8 text-[0.75rem] sm:text-[0.8rem] md:text-sm font-medium">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+          {navLinks.map((link) => {
+            if (link.path === '/about') {
+              return (
+                <a
+                  key={link.path}
+                  href="#about"
+                  onClick={(e) => handleScrollToSection(e, 'about')}
+                  className="text-[#D9DFD7] hover:text-[#EFA83C] transition cursor-pointer text-sm font-medium whitespace-nowrap"
+                >
+                  {link.name}
+                </a>
+              );
+            }
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`${location.pathname === link.path ? 'text-[#EFA83C]' : 'text-[#D9DFD7]'} hover:text-[#EFA83C] transition text-sm font-medium whitespace-nowrap`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <a 
+          href="#contact" 
+          className="hidden md:block bg-white text-[#1F3B2C] px-4 lg:px-6 py-1.5 sm:py-2 rounded-full font-semibold text-xs sm:text-sm hover:bg-[#EFA83C] hover:text-white transition whitespace-nowrap"
+          onClick={handleContactClick}
+        >
+          Contact Me
+        </a>
+      </div>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <nav className="md:hidden absolute top-full left-0 right-0 bg-[#1F3B2C] p-4 sm:p-5 shadow-lg z-50">
+          <ul className="flex flex-col gap-3">
             {navLinks.map((link) => {
               if (link.path === '/about') {
                 return (
@@ -81,7 +114,7 @@ export default function Header() {
                     <a
                       href="#about"
                       onClick={(e) => handleScrollToSection(e, 'about')}
-                      className="text-[#D9DFD7] hover:text-[#EFA83C] transition cursor-pointer block md:inline py-1 md:py-0"
+                      className="text-[#D9DFD7] hover:text-[#EFA83C] transition cursor-pointer block py-1.5 text-sm font-medium"
                     >
                       {link.name}
                     </a>
@@ -92,7 +125,7 @@ export default function Header() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className={`${location.pathname === link.path ? 'text-[#EFA83C]' : 'text-[#D9DFD7]'} hover:text-[#EFA83C] transition block md:inline py-1 md:py-0`}
+                    className={`${location.pathname === link.path ? 'text-[#EFA83C]' : 'text-[#D9DFD7]'} hover:text-[#EFA83C] transition block py-1.5 text-sm font-medium`}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.name}
@@ -100,17 +133,18 @@ export default function Header() {
                 </li>
               );
             })}
+            <li>
+              <a 
+                href="#contact" 
+                className="text-[#D9DFD7] hover:text-[#EFA83C] transition block py-1.5 text-sm font-medium"
+                onClick={handleContactClick}
+              >
+                Contact Me
+              </a>
+            </li>
           </ul>
         </nav>
-
-        <a 
-          href="#contact" 
-          className="hidden md:block bg-white text-[#1F3B2C] px-3 sm:px-4 lg:px-6 py-1 sm:py-1.5 rounded-full font-semibold text-[0.65rem] sm:text-[0.7rem] md:text-sm hover:bg-[#EFA83C] hover:text-white transition"
-          onClick={handleContactClick}
-        >
-          Contact Me
-        </a>
-      </div>
+      )}
     </header>
   );
 }

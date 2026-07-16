@@ -3,33 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You</title>
+    <title>Thank You - Abbey Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: black;
-            color: #b74b4b;
-            font-family: 'Poppins', sans-serif;
+            background: #f8f9ff;
+            font-family: 'Poppins', -apple-system, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .thankyou-container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            padding: 50px 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
             text-align: center;
         }
-        h1 { font-size: 3rem; margin-bottom: 1rem; }
-        p { font-size: 1.5rem; margin-bottom: 2rem; }
-        a {
-            color: #00ffcc;
-            font-weight: 600;
+        .thankyou-icon {
+            width: 80px;
+            height: 80px;
+            background: #E8F8F6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+            color: #4ECDC4;
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: #2d2d2d;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .email-display {
+            background: #f5f5fa;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 24px 0;
+            font-size: 0.95rem;
+            color: #2d2d2d;
+            word-break: break-all;
+        }
+        .email-display strong {
+            color: #6C63FF;
+        }
+        .next-steps {
+            text-align: left;
+            margin: 24px 0;
+            padding: 20px;
+            background: #fafaff;
+            border-radius: 12px;
+            border: 1px solid #f0f0f5;
+        }
+        .next-steps h3 {
+            color: #2d2d2d;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+        .next-steps ul li {
+            color: #555;
+            font-size: 0.9rem;
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .next-steps ul li i {
+            color: #6C63FF;
+            font-size: 0.8rem;
+        }
+        .home-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: #6C63FF;
+            color: white;
             text-decoration: none;
-            font-size: 1.4rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+        .home-btn:hover {
+            background: #5a52d5;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+        }
+        @media (max-width: 480px) {
+            .thankyou-container { padding: 30px 20px; }
+            h1 { font-size: 1.8rem; }
+            .thankyou-icon { width: 60px; height: 60px; font-size: 30px; }
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Thank You!</h1>
-        <p>Your inquiry has been submitted successfully.</p>
-        <a href="index.html">Back to Home</a>
+    <div class="thankyou-container">
+        <div class="thankyou-icon">
+            <i class="fa-regular fa-circle-check"></i>
+        </div>
+        
+        <h1>Thank You! 🎉</h1>
+        <p class="subtitle" id="greeting">Your message has been sent successfully.</p>
+        
+        <div class="email-display" id="userEmail">
+            We'll respond to <strong>your email</strong> shortly.
+        </div>
+        
+        <div class="next-steps">
+            <h3>What happens next?</h3>
+            <ul>
+                <li><i class="fa-solid fa-check"></i> I'll review your message within 24 hours</li>
+                <li><i class="fa-solid fa-check"></i> You'll receive a response via email</li>
+                <li><i class="fa-solid fa-check"></i> Let's bring your ideas to life! 🚀</li>
+            </ul>
+        </div>
+        
+        <a href="/" class="home-btn">
+            <i class="fa-solid fa-arrow-left" style="margin-right: 10px;"></i>
+            Back to Home
+        </a>
     </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const email = params.get('email');
+        const name = params.get('name');
+        
+        if (email) {
+            const decodedEmail = decodeURIComponent(email);
+            document.getElementById('userEmail').innerHTML = 
+                `We'll respond to <strong>${decodedEmail}</strong> shortly.`;
+        }
+        
+        if (name) {
+            const decodedName = decodeURIComponent(name);
+            document.getElementById('greeting').textContent = 
+                `Thank you ${decodedName}! Your message has been sent successfully.`;
+        }
+    </script>
 </body>
 </html>

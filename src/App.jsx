@@ -12,6 +12,7 @@ import Testimonials from './components/Testimonials';
 import EducationWork from './components/EducationWork';
 import Blogs from './components/Blogs';
 import About from './components/About';
+import FAQ from './components/FAQ';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
           </Routes>
         </main>
         <Footer />

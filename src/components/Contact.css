@@ -185,6 +185,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.form-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
 }
 
 .form-submit:disabled {
@@ -195,8 +201,6 @@
 .form-success {
   margin-top: 1rem;
   padding: 1rem;
-  background: #E8F8F6;
-  color: #2d8a7a;
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -204,9 +208,18 @@
   font-weight: 500;
 }
 
+.form-success:has(.fa-circle-check) {
+  background: #E8F8F6;
+  color: #2d8a7a;
+}
+
+.form-success:has(.fa-circle-exclamation) {
+  background: #FEE;
+  color: #C0392B;
+}
+
 .form-success i {
   font-size: 1.2rem;
-  color: #4ECDC4;
 }
 
 /* Responsive */

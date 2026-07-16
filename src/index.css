@@ -24,6 +24,10 @@
   .animate-float {
     animation: float 4s ease-in-out infinite;
   }
+  
+  .animate-spin-slow {
+    animation: spin-slow 12s linear infinite;
+  }
 }
 
 @keyframes marquee {
@@ -36,29 +40,104 @@
   50% { transform: translateY(-10px); }
 }
 
-/* Add to your App.css or index.css */
-
-/* Marquee Animation */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-20%); }
-}
-
-.animate-marquee {
-  animation: marquee 25s linear infinite;
-}
-
-/* Slow spin for hero badge */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
-}
-
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* ============================================
+   FIX DUPLICATE HEADER / NAVBAR
+   ============================================ */
+
+/* Hide any duplicate header */
+header:not(.main-header) {
+  display: none !important;
+}
+
+/* Ensure the main header is visible with proper styling */
+header.main-header {
+  display: flex !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  background: #1F3B2C !important;
+  width: 100% !important;
+  padding: 0.5rem 1rem !important;
+}
+
+/* Make sure header content is properly spaced */
+header.main-header > div {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Hide any header that appears inside sections */
+section header,
+section .main-header,
+section .sticky-header {
+  display: none !important;
+}
+
+/* Hide navbar from Home.css - this was causing the duplicate */
+.home-page .navbar,
+.home-page .navbar-container,
+.home-page .logo,
+.home-page .logo-dot,
+.home-page .logo-period,
+.home-page .navbar-links {
+  display: none !important;
+}
+
+/* Hide any nav inside sections */
+section nav {
+  display: none !important;
+}
+
+/* Hide any duplicate nav elements */
+.navbar:not(.main-nav) {
+  display: none !important;
+}
+
+/* Remove the overly aggressive rules that were compacting the navbar */
+/* The following rules were causing the compaction issue */
+
+/* 
+   REMOVED: header.main-header nav { display: flex !important; }
+   REMOVED: header.main-header .md\:hidden { display: flex !important; }
+   REMOVED: nav + nav { display: none !important; }
+   REMOVED: #root > div > header { ... }
+   REMOVED: #root > div > header + header { display: none !important; }
+*/
+
+/* Make sure the main header stays visible on all screens */
+@media (max-width: 768px) {
+  header.main-header {
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  header.main-header nav {
+    display: none !important;
+  }
+  
+  header.main-header nav.block {
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #1F3B2C !important;
+    padding: 1rem !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+  }
 }

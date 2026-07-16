@@ -33,12 +33,6 @@ main {
   flex: 1;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -65,66 +59,34 @@ html {
   background: var(--gold);
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0 0.75rem;
-  }
+/* ===== FIX DUPLICATE HEADER ===== */
+/* Only show the main header */
+header.main-header {
+  display: flex !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  background: #1F3B2C !important;
+  width: 100% !important;
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 0 0.5rem;
-  }
+/* Hide any other header */
+header:not(.main-header) {
+  display: none !important;
 }
 
-/* Add to your App.css or index.css */
-
-/* Marquee Animation */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-20%); }
+/* Hide navbar from Home.css */
+.home-page .navbar,
+.home-page .navbar-container,
+.home-page .logo,
+.home-page .logo-dot,
+.home-page .logo-period,
+.home-page .navbar-links {
+  display: none !important;
 }
 
-.animate-marquee {
-  animation: marquee 25s linear infinite;
-}
-
-/* Slow spin for hero badge */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-20%); }
-}
-
-.animate-marquee {
-  animation: marquee 25s linear infinite;
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
-}
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
+/* Hide any nav inside sections */
+section nav,
+section .navbar {
+  display: none !important;
 }

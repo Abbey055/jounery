@@ -122,69 +122,6 @@
   color: var(--forest-dark);
 }
 
-/* ============ NAVBAR ============ */
-.navbar {
-  background: var(--forest);
-  border-radius: 50px;
-  max-width: 1160px;
-  margin: 1.5rem auto 0;
-  padding: 0.7rem 0.8rem 0.7rem 1.6rem;
-}
-
-.navbar-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.2rem;
-  text-decoration: none;
-}
-
-.logo-dot {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: var(--forest-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-}
-
-.logo-period {
-  color: var(--gold);
-}
-
-.navbar-links {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-links a {
-  color: #d9dfd7;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.navbar-links a:hover,
-.navbar-links a.active {
-  color: var(--gold);
-}
-
 /* ============ HERO SECTION ============ */
 .hero {
   padding: 4rem 2rem 3rem;
@@ -901,8 +838,6 @@
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 968px) {
-  .navbar-links { display: none; }
-
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
@@ -931,7 +866,6 @@
 
 @media (max-width: 600px) {
   .container { padding: 0 1.2rem; }
-  .navbar { margin: 1rem 1.2rem 0; padding: 0.6rem; }
   .hero { padding: 2.5rem 1.2rem; }
   .hero-content h1 { font-size: 2rem; }
   .hero-blob, .hero-portrait { width: 260px; }
