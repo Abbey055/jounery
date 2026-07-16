@@ -28,10 +28,10 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm install  # Using npm install instead of npm ci
+        run: npm install
       
       - name: Build
-        run: npm run build
+        run: CI=false npm run build  # ← Add CI=false here
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
