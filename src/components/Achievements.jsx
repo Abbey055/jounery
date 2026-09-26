@@ -14,7 +14,7 @@ export default function Achievements() {
             <span />
             <span />
             <div className="certificate-preview">
-              <iframe src="/images/abbey.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Introduction to Front End Development certificate" />
+              <img src="/images/abbey-preview.png" alt="Introduction to Front End Development certificate for Ssenkubuge Abbey" />
             </div>
           </div>
 
@@ -23,8 +23,13 @@ export default function Achievements() {
             <h3>Introduction to Front End Development</h3>
             <p>Ssenkubuge Abbey · 26th September 2026</p>
             <div className="achievement-actions">
-              <a className="btn btn1" href="/images/abbey.pdf" target="_blank" rel="noreferrer">View certificate</a>
-              <a className="btn btn2" href="/images/abbey.pdf" download>Download PDF</a>
+              <a className="reference-button achievement-button" href="/images/abbey.pdf" target="_blank" rel="noreferrer">
+                <span>View certificate</span>
+                <span className="button-icon-shift" aria-hidden="true">→</span>
+              </a>
+              <a className="reference-button reference-button--secondary achievement-button" href="/images/abbey.pdf" download>
+                <span>Download PDF</span>
+              </a>
             </div>
           </div>
         </article>
