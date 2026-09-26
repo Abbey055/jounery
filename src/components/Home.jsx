@@ -9,6 +9,7 @@ import Testimonials from './Testimonials';
 import WorkProcess from './WorkProcess';
 import Availability from './Availability';
 import Videos from './Videos';
+import Achievements from './Achievements';
 import abbeyImage from '../assets/images/abbey.jpg';
 
 export default function Home() {
@@ -157,6 +158,7 @@ export default function Home() {
         </div>
       </section>
 
+      <Achievements />
       <Services />
       <WorkProcess />
       <Skills />
