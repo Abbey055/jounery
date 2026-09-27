@@ -1,6 +1,7 @@
 .achievements-section { padding: 5rem 2rem; background: #faf9f4; }
 .achievements-container { max-width: 1200px; margin: 0 auto; }
 .achievements-heading { max-width: 620px; margin: 0 auto 1.25rem; text-align: center; }
+.achievements-list { display: grid; gap: 3rem; }
 .achievements-eyebrow, .achievement-label { display: block; margin-bottom: .75rem; color: #efa83c; font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
 .achievement-card { display: grid; grid-template-columns: minmax(180px, .7fr) minmax(0, 1.3fr); gap: 2rem; align-items: center; max-width: 920px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem) 0; border-top: 1px solid #e5e3da; border-bottom: 1px solid #e5e3da; }
 .certificate-stack { position: relative; min-height: 260px; display: grid; place-items: center; perspective: 900px; transform-style: preserve-3d; transform: rotate(-8deg); }
